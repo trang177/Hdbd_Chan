@@ -3,16 +3,132 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy 100 Days</title>
+  <title>Happy Birthday my love <3</title>
   <style>
 :root{--accent:#ff6b9f;--accent2:#ffdc8a;--bg:#0b0711} *{box-sizing:border-box} 
 html,body{height:100%;margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#fff;background:radial-gradient(circle at center,#1a0f2c 0%,#050309 100%)}
 
-/* INTRO SCREEN */
+/* INTRO SCREEN
 #introScreen{position:absolute;inset:0;background:radial-gradient(circle at center,#ff6b9f,#ffdc8a);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;color:#fff;text-align:center;padding:20px} 
 #introScreen h2{font-size:36px;margin:12px 0;color:#fff;text-shadow:0 0 8px #ff6b9f} 
 #introScreen input{margin-top:12px;padding:10px 14px;border-radius:10px;border:none;font-size:18px} 
-#introScreen button{margin-top:20px;padding:12px 24px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff6b9f,#ffdc8a);color:#111;font-weight:700;cursor:pointer;font-size:18px}
+#introScreen button{margin-top:20px;padding:12px 24px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff6b9f,#ffdc8a);color:#111;font-weight:700;cursor:pointer;font-size:18px} */
+
+/* ===== INTRO NEW STYLE ===== */
+#introScreen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: radial-gradient(circle at center,#1a0f2c,#050309);
+  z-index:1000;
+  overflow:hidden;
+}
+
+.intro-overlay{
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center, rgba(255,107,159,0.25), rgba(255,220,138,0.1));
+  animation: pulseBg 6s infinite alternate;
+}
+
+@keyframes pulseBg{
+  from{transform:scale(1); opacity:0.8;}
+  to{transform:scale(1.2); opacity:1;}
+}
+
+.intro-card{
+  position:relative;
+  z-index:2;
+  width:360px;
+  padding:26px;
+  border-radius:18px;
+  text-align:center;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,107,159,0.3);
+  box-shadow:0 0 30px rgba(255,107,159,0.4);
+}
+
+.love-badge{
+  font-size:14px;
+  color:#ffdc8a;
+  margin-bottom:10px;
+}
+
+.intro-title{
+  font-size:26px;
+  color:#ff6b9f;
+  margin:10px 0;
+  text-shadow:0 0 10px #ff6b9f;
+}
+
+.intro-name{
+  font-size:18px;
+  color:#fff;
+  margin-bottom:12px;
+}
+
+.intro-desc{
+  font-size:13px;
+  opacity:0.9;
+  margin-bottom:16px;
+  color:#ffdc8a;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom:12px;
+  text-align:left;
+}
+
+.form-group label{
+  font-size:12px;
+  color:#fff;
+}
+
+.form-group input{
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+#startBtn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+  background:linear-gradient(90deg,#ff6b9f,#ffdc8a);
+  color:#111;
+  transition:0.2s;
+}
+
+#startBtn:hover{
+  transform:scale(1.05);
+}
+
+#passMsg{
+  font-size:12px;
+  color:#ff6b9f;
+  margin-top:8px;
+}
+
+.intro-footer{
+  margin-top:14px;
+  font-size:11px;
+  opacity:0.7;
+  color:#fff;
+}
+
+
 
 /* HERO */
 .hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:20px;display:none} 
@@ -62,30 +178,55 @@ canvas{position:absolute;width:100%;height:100%}
 .nav-buttons button{margin-right:10px;padding:10px 16px;border:none;border-radius:8px;background:linear-gradient(90deg,#ff6b9f,#ffdc8a);color:#111;font-weight:700;cursor:pointer}
 
 
+
+
+
+
+
 /* chữ happy rơi */
-.birthday-rain {
-  position: absolute;
-  top: -80px;
-  color: #ff6b9f;
-  font-size: 22px;
-  font-weight: 800;
-  white-space: nowrap;
-  text-shadow: 0 0 10px #ff6b9f, 0 0 20px #ffdc8a;
-  animation: birthdayFall linear infinite;
-  pointer-events: none;
+#birthdayRain{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
 }
 
-@keyframes birthdayFall {
-  0% {
-    transform: translateY(-100px);
-    opacity: 0;
+#birthdayRain span{
+  user-select:none;
+}
+.birthday-rain{
+  position:absolute;
+  top:-50px;
+
+  color:#ff9ecb;
+
+  font-weight:700;
+  font-family:monospace;
+
+  text-shadow:
+    0 0 5px #ff6b9f,
+    0 0 10px #ff6b9f,
+    0 0 20px #ffdc8a;
+
+  pointer-events:none;
+
+  animation:birthdayFall linear infinite;
+}
+@keyframes ombreFlow{
+  0%{
+    background-position: 0% 0%;
   }
-  10% {
-    opacity: 1;
+  100%{
+    background-position: 0% 100%;
   }
-  100% {
-    transform: translateY(110vh);
-    opacity: 0;
+}
+@keyframes birthdayColumnFall {
+
+  from {
+    transform: translateY(-120%);
+  }
+
+  to {
+    transform: translateY(120vh);
   }
 }
 </style>
@@ -94,22 +235,51 @@ canvas{position:absolute;width:100%;height:100%}
 <body>
 
 
-<div id="introScreen" style="text-align:center;padding:40px;color:#fff;">
-  <h2>HAPPY BIRTH DAY MY LOVE💕</h2>
-  <h3>Trương Cường 💕</h3>
-  <div>Nhập đúng ngày yêu nhau 💕</div>
-  
-  <!-- Trường 1: Ngày yêu nhau -->
-  <input type="date" id="dateInput" placeholder="Ngày yêu nhau" style="margin:10px;padding:8px;border-radius:6px;border:none;font-size:16px;">
-  <div>Mật khẩu là ngày đầu tiên mình gặp nhau ạ</div>
-  <!-- Trường 2: Mật khẩu -->
-  <input type="password" id="passInput" placeholder="Mật khẩu" style="margin:10px;padding:8px;border-radius:6px;border:none;font-size:16px;">
-  
-  <button id="startBtn" style="padding:10px 20px;border-radius:8px;border:none;background:linear-gradient(90deg,#ff6b9f,#ffdc8a);color:#111;font-weight:700;cursor:pointer;">Mở kỷ niệm</button>
-  
-  <div id="passMsg" style="color:#ffdc8a;margin-top:10px;"></div>
-</div>
+<div id="introScreen">
+  <div class="intro-overlay"></div>
 
+  <div class="intro-card">
+    <div class="love-badge">🎂 Happy Birthday 🎂</div>
+
+    <h1 class="intro-title">
+      Happy Birthday <br>
+      My Love 💕
+    </h1>
+
+    <div class="intro-name">
+      Trương Cường ✨
+    </div>
+
+    <p class="intro-desc">
+      Hôm nay là ngày đặc biệt của anh 💖 <br>
+      Em có một món quà nhỏ muốn gửi tới anh nè...
+    </p>
+
+    <div class="intro-form">
+
+      <div class="form-group">
+        <label>📅 Ngày yêu nhau</label>
+        <input type="date" id="dateInput">
+      </div>
+
+      <div class="form-group">
+        <label>🔐 Mật khẩu bí mật</label>
+        <input type="password" id="passInput" placeholder="..💕">
+      </div>
+
+      <div class="form-group">
+        <button id="startBtn">Mở món quà 🎁</button>
+      </div>
+
+      <div id="passMsg"></div>
+    </div>
+
+    <div class="intro-footer">
+      Made with love - Chan 💕
+    </div>
+
+  </div>
+</div>
 
 <!-- Màn 2  -->
 <div class="hero" id="mainHero">
@@ -121,9 +291,9 @@ canvas{position:absolute;width:100%;height:100%}
   <div class="hero-bg"></div>
   <div class="container">
     <div class="card">
-      <h2> HAPPY BIRTH DAY MY LOVE - 19.05.1997 - 19.05.2026💕 </h2>
-      <div class="sub">Chúc anh sinh nhật vui vẻ hạnh phúc ạ </div>
-      <div class="sub">Yêu anh rất nhiều ạ 💕19.05.1997 💕</div>
+      <h2> HAPPY BIRTH DAY MY LOVE 💕 </h2>
+      <div class="sub">        💕 _19.05.1997 - 19.05.2026_ 💕</div>
+      <div class="sub"> 💕Ngàn lời iu thương gửi đến anh ạ💕 </div>
       <div class="typing" id="typing"><div id="typingText"></div><div class="cursor"></div></div>
       <div class="count" id="count">
         <div class="box"><div class="num" id="daysCount">--</div><div class="lbl">Ngày yêu rùi đó ha 💕</div></div>
@@ -138,15 +308,15 @@ canvas{position:absolute;width:100%;height:100%}
         <img src="images/5.jpg" data-caption="Chúng mình cùng nhau cố gắng hơn nhá anh iu. Biết iu xa là khó nhưng mà chúng ra hãy cố lên, hãy vì nhau mà cố gắng nhá. Em mong rằng chúc ta có thể ở mãi bên nhau - và có 1 cái kết thật là đẹp với nhau ạ 💋💕" alt="photo4">
       </div>
       <div style="margin-top:16px;display:flex;gap:50px;flex-wrap:wrap">
-        <button class="btn" id="openPopup">ở đây có thêm ảnh và lời iu thương nữa ha💕 </button>
-        <button class="btn" id="togglePics">Bật/Tắt ảnh rơi nhá bbi</button>
+        <button class="btn" id="openPopup">Mỗi lần click là 1 lời iu ạ💕 </button>
+        <button class="btn" id="togglePics">Bật/Tắt ảnh rơi</button>
       </div>
     </div>
 
     <div class="right"> 
       <div class="card">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div><strong> Cường - Coffee ❤️ Bbi Chan</strong><div class="sub">Bbi click "Play" để nghe bài hát</div></div>
+          <div><strong> Cường ❤️ Bbi Chan</strong><div class="sub">Bbi click "Play" để nghe bài hát</div></div>
           <div class="music-control"><button class="btn" id="musicToggle">Play</button></div>
         </div>
         <div style="margin-top:12px">
@@ -154,7 +324,7 @@ canvas{position:absolute;width:100%;height:100%}
         </div>
 
       </div>
-      <div class="card game" id="game"><div>Anh chạm vào trái tim rơi để mở lời yêu thương của bé nh, Mỗi trái tym là một lời yêu thương bé gửi đến anh ạ, nhớ đọc hết nhá!❤️</div></div>
+      <div class="card game" id="game"><div>Anh chạm vào trái tim rơi để mở lời yêu th thương của bé nh, Mỗi trái tym là một lời yêu thương bé gửi đến anh ạ, nhớ đọc hết nhá!❤️</div></div>
       <div class="card"><strong></strong><div class="sub"></div><input type="date" id="startDate" value="2025-06-21" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình bắt đầu là người yêu ạ ❤️</strong><div class="sub"></div><input type="date" id="endDate" value="2025-09-29" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình tròn 100 ngày iu nhau ha ❤️</div>
     </div>
   </div>
@@ -238,8 +408,8 @@ function initPage() {
     /* ========== TYPING TEXT ========== */
     const phrases = [
       'Chúc mừng sinh nhật my love - 29 tủi 💕',
-      'Anh phải yêu thương em nhiều hơn đó ạ',
-      'I love you so much  .',
+      'Chúc anh luôn hanh phúc, vui vẻ, thành công và may mắn trong cuộc sống 💕',
+      'I love you so much 💕  .',
       'I miss you very much.'
     ];
 
@@ -314,7 +484,7 @@ startCounting();
     /* ========== FALLING PHOTOS ========== */
     const falling = document.getElementById('falling');
     let fallEnabled = true;
-    const sampleImgs = ['images/5.jpg','images/6.jpg','images/7.jpg','images/8.jpg'];
+    const sampleImgs = ['images/4.jpg','images/6.jpg','images/7.jpg','images/8.jpg','images/10.jpg','images/1.jpg', 'images/3.jpg', 'images/2.jpg'];
 
     function spawnImg(){
       if(!fallEnabled) return;
@@ -407,7 +577,7 @@ musicToggle.addEventListener('click', () => {
         // show a loving line
         const lines=['i love you 💋','Yêu anh nhìu lắm, gửi đến anh nghìn nụ hôn ạ💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋','i mis you ~Chúc mình cùng nhau cố gắng hơn nhá anh iu.💋'];
         const m = lines[Math.floor(Math.random()*lines.length)];
-        modal.style.display='flex'; modalImg.src='images/2.jpg'; document.getElementById('modalTitle').textContent='Lời iu thương ha💋'; modalCaption.textContent=m;
+        modal.style.display='flex'; modalImg.src='images/4.jpg'; document.getElementById('modalTitle').textContent='Lời iu thương ha💋'; modalCaption.textContent=m;
       });
     }
     setInterval(spawnHeart, 1600);
@@ -572,30 +742,155 @@ document.getElementById('nextBtn').onclick = function() {
   initPage();
 };
 
-// đoạn ảnh + chữ rơi
-
-// đoạn chữ rơi ở màn 2
+// MƯA CHỮ HAPPY BIRTHDAY
 let birthdayRainStarted = false;
 
 function startBirthdayRain() {
+
   if (birthdayRainStarted) return;
   birthdayRainStarted = true;
 
   const rainBox = document.getElementById('birthdayRain');
 
-  for (let i = 0; i < 35; i++) {
-    const text = document.createElement('div');
-    text.className = 'birthday-rain';
-    text.textContent = 'Happy Birthday 💕';
+  rainBox.innerHTML = '';
 
-    text.style.left = Math.random() * 100 + 'vw';
-    text.style.animationDuration = (4 + Math.random() * 5) + 's';
-    text.style.animationDelay = Math.random() * 5 + 's';
+  // chữ chạy dọc
+  const text = "HAPPYBIRTHDAY";
 
-    rainBox.appendChild(text);
+  // khoảng cách cột
+  const columnWidth = 18;
+
+  // số cột full màn hình
+  const columns = Math.floor(window.innerWidth / columnWidth);
+
+  for (let i = 0; i < columns; i++) {
+
+    const col = document.createElement('div');
+
+    col.style.position = 'absolute';
+    col.style.left = (i * columnWidth) + 'px';
+
+    // random để rơi từ trên xuống ngay
+    col.style.top =
+      (-Math.random() * window.innerHeight) + 'px';
+
+    col.style.display = 'flex';
+    col.style.flexDirection = 'column';
+    col.style.alignItems = 'center';
+
+    // tốc độ random
+    const speed = 5 + Math.random() * 4;
+
+    col.style.animation =
+      `birthdayColumnFall ${speed}s linear infinite`;
+
+    // KHÔNG delay
+    col.style.animationDelay = '0s';
+
+    // tạo ký tự
+    for (let j = 0; j < 55; j++) {
+
+      const span = document.createElement('span');
+
+      // cuối mỗi cột có trái tim
+      if (j === 54 && Math.random() > 0.35) {
+
+        span.innerHTML = '♥';
+
+        span.style.color = '#ff5fa2';
+
+        span.style.fontSize = '18px';
+
+        span.style.textShadow = `
+          0 0 6px #ff5fa2,
+          0 0 12px #ff5fa2,
+          0 0 24px #ff99c8
+        `;
+
+      } else {
+
+        span.textContent =
+          text[(j + i) % text.length];
+
+        // Ombre đồng đều từ trên xuống dưới
+const fade = 1 - (j / 55);
+
+// màu đồng đều
+span.style.color = '#ff7eb8';
+
+// nhạt dần xuống dưới
+span.style.opacity = fade;
+
+// KHÔNG phát sáng
+span.style.textShadow = 'none';
+      }
+
+      span.style.width = '18px';
+      span.style.height = '18px';
+
+      span.style.display = 'flex';
+      span.style.alignItems = 'center';
+      span.style.justifyContent = 'center';
+
+      span.style.fontSize = '14px';
+      span.style.fontWeight = '700';
+      span.style.fontFamily = 'monospace';
+
+      col.appendChild(span);
+    }
+
+    rainBox.appendChild(col);
   }
-}
 
+  // DÒNG CHỮ DƯỚI
+const bottomText = document.createElement('div');
+
+bottomText.innerHTML =
+  'Chúc mừng sinh nhật, anh yêu - Trương Cường ♡';
+
+bottomText.style.position = 'absolute';
+bottomText.style.bottom = '35px';
+bottomText.style.left = '50%';
+bottomText.style.transform = 'translateX(-50%)';
+
+bottomText.style.fontSize = '42px';
+bottomText.style.fontWeight = '700';
+
+bottomText.style.fontFamily =
+  '"Brush Script MT", cursive';
+
+// hiệu ứng gradient đổi màu
+// bottomText.style.background =
+//   'linear-gradient(90deg,#ff5fa2,#ffd6ec,#fff,#ff99c8,#ff5fa2)';
+
+  // Ombre chữ từ đậm -> nhạt dần xuống dưới
+bottomText.style.background =
+  'linear-gradient(to bottom, #ff4f95 0%, #ff7eb8 35%, #ffc7df 70%, #fff3f8 100%)';
+
+// bottomText.style.backgroundSize = '400% auto';
+bottomText.style.backgroundSize = '100% 300%';
+
+bottomText.style.webkitBackgroundClip = 'text';
+bottomText.style.webkitTextFillColor = 'transparent';
+
+// bottomText.style.animation =
+//   'colorShift 5s linear infinite';
+
+bottomText.style.animation =
+  'ombreFlow 4s linear infinite';
+
+bottomText.style.whiteSpace = 'nowrap';
+
+bottomText.style.textShadow = `
+  0 0 10px rgba(255,95,162,0.8),
+  0 0 20px rgba(255,95,162,0.7),
+  0 0 40px rgba(255,153,200,0.8)
+`;
+
+bottomText.style.zIndex = '50';
+
+rainBox.appendChild(bottomText);
+}
 document.getElementById('backToHeartBtn').onclick = function() {
   // Tắt nhạc màn kỷ niệm
   mainMusic.pause();
