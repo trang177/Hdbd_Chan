@@ -5,321 +5,453 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Happy Birthday my love <3</title>
   <style>
-    :root{--accent:#ff6b9f;--accent2:#ffdc8a;--bg:#0b0711} *{box-sizing:border-box} 
-    html,body{height:100%;margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#fff;background:radial-gradient(circle at center,#1a0f2c 0%,#050309 100%)}
+:root{--accent:#ff6b9f;--accent2:#ffdc8a;--bg:#0b0711} *{box-sizing:border-box} 
+html,body{height:100%;margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#fff;background:radial-gradient(circle at center,#1a0f2c 0%,#050309 100%)}
 
-    /* ===== INTRO NEW STYLE ===== */
-    #introScreen{
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: radial-gradient(circle at center,#1a0f2c,#050309);
-      z-index:1000;
-      overflow:hidden;
-    }
+/* ===== INTRO NEW STYLE ===== */
+#introScreen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: radial-gradient(circle at center,#1a0f2c,#050309);
+  z-index:1000;
+  overflow:hidden;
+}
 
-    .intro-overlay{
-      position:absolute;
-      inset:0;
-      background: radial-gradient(circle at center, rgba(255,107,159,0.25), rgba(255,220,138,0.1));
-      animation: pulseBg 6s infinite alternate;
-    }
+.intro-overlay{
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center, rgba(255,107,159,0.25), rgba(255,220,138,0.1));
+  animation: pulseBg 6s infinite alternate;
+}
 
-    @keyframes pulseBg{
-      from{transform:scale(1); opacity:0.8;}
-      to{transform:scale(1.2); opacity:1;}
-    }
+@keyframes pulseBg{
+  from{transform:scale(1); opacity:0.8;}
+  to{transform:scale(1.2); opacity:1;}
+}
 
-    .intro-card{
-      position:relative;
-      z-index:2;
-      width:360px;
-      padding:26px;
-      border-radius:18px;
-      text-align:center;
-      backdrop-filter: blur(12px);
-      background: rgba(255,255,255,0.06);
-      border:1px solid rgba(255,107,159,0.3);
-      box-shadow:0 0 30px rgba(255,107,159,0.4);
-    }
+.intro-card{
+  position:relative;
+  z-index:2;
+  width:360px;
+  padding:26px;
+  border-radius:18px;
+  text-align:center;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,107,159,0.3);
+  box-shadow:0 0 30px rgba(255,107,159,0.4);
+}
 
-    .love-badge{
-      font-size:14px;
-      color:#ffdc8a;
-      margin-bottom:10px;
-    }
+.love-badge{
+  font-size:14px;
+  color:#ffdc8a;
+  margin-bottom:10px;
+}
 
-    .intro-title{
-      font-size:26px;
-      color:#ff6b9f;
-      margin:10px 0;
-      text-shadow:0 0 10px #ff6b9f;
-    }
+.intro-title{
+  font-size:26px;
+  color:#ff6b9f;
+  margin:10px 0;
+  text-shadow:0 0 10px #ff6b9f;
+}
 
-    .intro-name{
-      font-size:18px;
-      color:#fff;
-      margin-bottom:12px;
-    }
+.intro-name{
+  font-size:18px;
+  color:#fff;
+  margin-bottom:12px;
+}
 
-    .intro-desc{
-      font-size:13px;
-      opacity:0.9;
-      margin-bottom:16px;
-      color:#ffdc8a;
-    }
+.intro-desc{
+  font-size:13px;
+  opacity:0.9;
+  margin-bottom:16px;
+  color:#ffdc8a;
+}
 
-    .form-group{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      margin-bottom:12px;
-      text-align:left;
-    }
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom:12px;
+  text-align:left;
+}
 
-    .form-group label{
-      font-size:12px;
-      color:#fff;
-    }
+.form-group label{
+  font-size:12px;
+  color:#fff;
+}
 
-    .form-group input{
-      padding:10px;
-      border-radius:10px;
-      border:none;
-      outline:none;
-      background:rgba(255,255,255,0.1);
-      color:#fff;
-    }
+.form-group input{
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
 
-    #startBtn{
-      width:100%;
-      padding:12px;
-      border:none;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:bold;
-      background:linear-gradient(90deg,#ff6b9f,#ffdc8a);
-      color:#111;
-      transition:0.2s;
-    }
+#startBtn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+  background:linear-gradient(90deg,#ff6b9f,#ffdc8a);
+  color:#111;
+  transition:0.2s;
+}
 
-    #startBtn:hover{
-      transform:scale(1.05);
-    }
+#startBtn:hover{
+  transform:scale(1.05);
+}
 
-    #passMsg{
-      font-size:12px;
-      color:#ff6b9f;
-      margin-top:8px;
-    }
+#passMsg{
+  font-size:12px;
+  color:#ff6b9f;
+  margin-top:8px;
+}
 
-    .intro-footer{
-      margin-top:14px;
-      font-size:11px;
-      opacity:0.7;
-      color:#fff;
-    }
-    #cinematicScreen::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6));
-      pointer-events:none;
-    }
+.intro-footer{
+  margin-top:14px;
+  font-size:11px;
+  opacity:0.7;
+  color:#fff;
+}
+#cinematicScreen::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6));
+  pointer-events:none;
+}
 
-    /* HERO */
-    .hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:20px;display:none} 
-    .hero-bg{position:absolute;inset:0;background-image:linear-gradient(180deg,rgba(255,107,159,0.2),rgba(255,220,138,0.15));pointer-events:none;mix-blend-mode:screen} 
-    .container{z-index:5;max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center} 
 
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border-radius:16px;padding:28px;box-shadow:0 10px 40px rgba(255,107,159,0.4);backdrop-filter:blur(8px);border:1px solid rgba(255,107,159,0.2)} 
-    h2{font-size:28px;margin:0 0 12px;letter-spacing:2px;color:var(--accent);text-shadow:0 0 8px var(--accent),0 0 16px var(--accent2)} 
-    .sub{opacity:0.9;margin-bottom:16px;color:#ffdc8a;text-shadow:0 0 6px #ff6b9f} 
+/* HERO */
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:20px;display:none} 
+.hero-bg{position:absolute;inset:0;background-image:linear-gradient(180deg,rgba(255,107,159,0.2),rgba(255,220,138,0.15));pointer-events:none;mix-blend-mode:screen} 
+.container{z-index:5;max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center} 
 
-    .typing{font-size:20px;height:52px;display:flex;align-items:center;color:#fff} 
-    .typing .cursor{width:3px;height:26px;background:var(--accent2);margin-left:8px;animation:blink 1s infinite} 
-    @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}} 
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border-radius:16px;padding:28px;box-shadow:0 10px 40px rgba(255,107,159,0.4);backdrop-filter:blur(8px);border:1px solid rgba(255,107,159,0.2)} 
+h1{font-size:48px;margin:0 0 12px;letter-spacing:2px;color:var(--accent);text-shadow:0 0 8px var(--accent),0 0 16px var(--accent2)} 
+.sub{opacity:0.9;margin-bottom:16px;color:#ffdc8a;text-shadow:0 0 6px #ff6b9f} 
 
-    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px} 
-    .gallery img{width:100%;height:130px;object-fit:cover;border-radius:12px;cursor:pointer;transform-origin:center;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 4px 16px rgba(255,107,159,0.3)} 
-    .gallery img:hover{transform:scale(1.08);box-shadow:0 12px 40px rgba(255,220,138,0.6)} 
+.typing{font-size:20px;height:52px;display:flex;align-items:center;color:#fff} 
+.typing .cursor{width:3px;height:26px;background:var(--accent2);margin-left:8px;animation:blink 1s infinite} 
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}} 
 
-    .right{display:flex;flex-direction:column;gap:18px} 
-    .music-control{display:flex;gap:12px;align-items:center} 
-    .btn{background:linear-gradient(90deg,var(--accent),var(--accent2));padding:12px 16px;border-radius:12px;color:#111;font-weight:700;border:none;cursor:pointer;transition:transform .2s ease} 
-    .btn:hover{transform:scale(1.05)} 
+.count{display:flex;gap:14px;margin-top:18px} 
+.count .box{background:rgba(255,220,138,0.1);padding:14px 18px;border-radius:12px;min-width:72px;text-align:center;color:#111;font-weight:700;box-shadow:0 6px 18px rgba(255,107,159,0.3)} 
+.count .num{font-size:22px;color:var(--accent2)} 
 
-    .falling{pointer-events:none;position:absolute;inset:0;z-index:3;overflow:hidden} 
-    .falling img{position:absolute;width:100px;height:100px;object-fit:cover;border-radius:14px;box-shadow:0 10px 28px rgba(255,107,159,0.5);opacity:0.95;filter:drop-shadow(0 0 6px #ffdc8a)} 
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px} 
+.gallery img{width:100%;height:130px;object-fit:cover;border-radius:12px;cursor:pointer;transform-origin:center;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 4px 16px rgba(255,107,159,0.3)} 
+.gallery img:hover{transform:scale(1.08);box-shadow:0 12px 40px rgba(255,220,138,0.6)} 
 
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      justify-content:center;
-      align-items:center;
-      background:rgba(0,0,0,0.6); 
-      z-index:500;
-      padding:20px;
-    }
-    .modal .modal-card{
-      background:linear-gradient(135deg,#1a0f2c,#3d0d45);
-      padding:16px;
-      border-radius:16px;
-      width:90%;
-      max-width:320px;   
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-      box-shadow:0 8px 30px rgba(255,107,159,0.4);
-      animation: fadeIn 0.3s ease;
-    }
-    .modal img{
-      width:100%;
-      max-width:220px;
-      height:220px;
-      object-fit:cover;
-      border-radius:12px;
-    }
-    .modal .meta{flex:1;color:#fff;margin-top:10px;} 
+.right{display:flex;flex-direction:column;gap:18px} 
+.music-control{display:flex;gap:12px;align-items:center} 
+.btn{background:linear-gradient(90deg,var(--accent),var(--accent2));padding:12px 16px;border-radius:12px;color:#111;font-weight:700;border:none;cursor:pointer;transition:transform .2s ease} 
+.btn:hover{transform:scale(1.05)} 
 
-    .game{height:140px;border-radius:12px;padding:14px;background:linear-gradient(90deg,rgba(255,107,159,0.12),rgba(255,220,138,0.05));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden} 
-    .heart{position:absolute;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:24px;text-shadow:0 0 8px #ffdc8a,0 0 16px #ff6b9f;} 
+.falling{pointer-events:none;position:absolute;inset:0;z-index:3;overflow:hidden} 
+.falling img{position:absolute;width:100px;height:100px;object-fit:cover;border-radius:14px;box-shadow:0 10px 28px rgba(255,107,159,0.5);opacity:0.95;filter:drop-shadow(0 0 6px #ffdc8a)} 
 
-    footer{position:absolute;left:0;right:0;bottom:8px;text-align:center;z-index:6;opacity:0.8;font-size:13px;color:#ffdc8a;text-shadow:0 0 4px #ff6b9f} 
+/* .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.8));z-index:50}  */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
 
-    @media(max-width:980px){.container{grid-template-columns:1fr}.hero{padding:12px;height:auto;overflow-y:auto;}} 
+  justify-content:center;
+  align-items:center;
 
-    canvas{position:absolute;width:100%;height:100%} 
+  background:rgba(0,0,0,0.6); /* tối hơn cho nổi popup */
+  z-index:50;
+  padding:20px;
+}
+/* .modal .modal-card{background:linear-gradient(135deg,#1a0f2c,#3d0d45);padding:20px;border-radius:16px;max-width:960px;width:90%;display:flex;gap:20px;box-shadow:0 8px 36px rgba(255,107,159,0.4)}  */
+.modal .modal-card{
+  background:linear-gradient(135deg,#1a0f2c,#3d0d45);
+  padding:16px;
+  border-radius:16px;
 
-    /* chữ happy rơi */
-    #birthdayRain{
-      position:absolute;
-      inset:0;
-      overflow:hidden;
-    }
-    #birthdayRain span{
-      user-select:none;
-    }
+  width:90%;
+  max-width:320px;   /* 👈 QUAN TRỌNG: giới hạn nhỏ lại */
 
-    .letterbox{
-      position:absolute;
-      left:0;
-      width:100%;
-      height:80px;
-      background:black;
-      z-index:1000;
-    }
-    .letterbox.top{ top:0; }
-    .letterbox.bottom{ bottom:0; }
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
 
-    .cinematic-zoom{
-      animation: cinematicZoom 3s ease-in-out forwards;
-    }
+  box-shadow:0 8px 30px rgba(255,107,159,0.4);
 
-    @keyframes cinematicZoom{
-      0%{ transform:scale(1); filter:blur(0px); }
-      50%{ transform:scale(1.15); filter:blur(1px); }
-      100%{ transform:scale(1); filter:blur(0px); }
-    }
+  animation: popupUp 0.3s ease;
+}
+/* .modal img{width:340px;height:340px;object-fit:cover;border-radius:12px;box-shadow:0 8px 24px rgba(255,220,138,0.5)}  */
+.modal img{
+  width:100%;
+  max-width:220px;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+}
+.modal .meta{flex:1;color:#fff} 
 
-    .fade-in{ animation: fadeIn 1s ease forwards; }
-    .fade-out{ animation: fadeOut 1s ease forwards; }
+.game{height:140px;border-radius:12px;padding:14px;background:linear-gradient(90deg,rgba(255,107,159,0.12),rgba(255,220,138,0.05));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden} 
+.heart{position:absolute;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:24px;text-shadow:0 0 8px #ffdc8a,0 0 16px #ff6b9f;animation:floatHeart 4s linear infinite} 
+@keyframes floatHeart{0%{transform:translateY(0)}100%{transform:translateY(160px)}} 
 
-    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
-    @keyframes fadeOut{ from{opacity:1} to{opacity:0} }
+footer{position:absolute;left:0;right:0;bottom:8px;text-align:center;z-index:6;opacity:0.8;font-size:13px;color:#ffdc8a;text-shadow:0 0 4px #ff6b9f} 
 
-    .shake { animation: shake 0.5s infinite; }
-    @keyframes shake {
-      0%{transform:translate(0,0)}
-      25%{transform:translate(-5px,5px)}
-      50%{transform:translate(5px,-5px)}
-      75%{transform:translate(-3px,3px)}
-      100%{transform:translate(0,0)}
-    }
-  </style>
+@media(max-width:980px){.container{grid-template-columns:1fr}.hero{padding:12px}} 
+
+/* Canvas & Nav Buttons */
+canvas{position:absolute;width:100%;height:100%} 
+.nav-buttons{position:fixed;top:20px;left:20px;z-index:100} 
+.nav-buttons button{margin-right:10px;padding:10px 16px;border:none;border-radius:8px;background:linear-gradient(90deg,#ff6b9f,#ffdc8a);color:#111;font-weight:700;cursor:pointer}
+
+
+
+
+
+
+
+/* chữ happy rơi */
+#birthdayRain{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+}
+
+#birthdayRain span{
+  user-select:none;
+}
+.birthday-rain{
+  position:absolute;
+  top:-50px;
+
+  color:#ff9ecb;
+
+  font-weight:700;
+  font-family:monospace;
+
+  text-shadow:
+    0 0 5px #ff6b9f,
+    0 0 10px #ff6b9f,
+    0 0 20px #ffdc8a;
+
+  pointer-events:none;
+
+  animation:birthdayFall linear infinite;
+}
+@keyframes ombreFlow{
+  0%{
+    background-position: 0% 0%;
+  }
+  100%{
+    background-position: 0% 100%;
+  }
+}
+@keyframes birthdayColumnFall {
+
+  from {
+    transform: translateY(-120%);
+  }
+
+  to {
+    transform: translateY(120vh);
+  }
+}
+@keyframes shake {
+  0%{transform:translate(0,0)}
+  25%{transform:translate(-5px,5px)}
+  50%{transform:translate(5px,-5px)}
+  75%{transform:translate(-3px,3px)}
+  100%{transform:translate(0,0)}
+}
+
+.shake {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes zoomIn {
+  0%{transform:scale(0.3);opacity:0}
+  100%{transform:scale(1.2);opacity:1}
+}
+
+@keyframes shockwave {
+  0%{transform:scale(0);opacity:1;border:2px solid #ff4fa2;}
+  100%{transform:scale(4);opacity:0;}
+}
+
+
+
+.letterbox{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:80px;
+  background:black;
+  z-index:1000;
+}
+
+.letterbox.top{ top:0; }
+.letterbox.bottom{ bottom:0; }
+
+.cinematic-zoom{
+  animation: cinematicZoom 3s ease-in-out forwards;
+}
+
+@keyframes cinematicZoom{
+  0%{ transform:scale(1); filter:blur(0px); }
+  50%{ transform:scale(1.15); filter:blur(1px); }
+  100%{ transform:scale(1); filter:blur(0px); }
+}
+
+.fade-in{
+  animation: fadeIn 1s ease forwards;
+}
+
+.fade-out{
+  animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes fadeOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+</style>
+
 </head>
 <body>
 
-<!-- Màn 1: Nhập pass -->
+
 <div id="introScreen">
   <div class="intro-overlay"></div>
+
   <div class="intro-card">
     <div class="love-badge">🎂 Happy Birthday 🎂</div>
-    <h1 class="intro-title">Happy Birthday <br> My Love 💕</h1>
-    <div class="intro-name">Trương Cường ✨</div>
+
+    <h1 class="intro-title">
+      Happy Birthday <br>
+      My Love 💕
+    </h1>
+
+    <div class="intro-name">
+      Trương Cường ✨
+    </div>
+
     <p class="intro-desc">
       Hôm nay là ngày đặc biệt của anh 💖 <br>
       Em có một món quà nhỏ muốn gửi tới anh nè...
     </p>
 
     <div class="intro-form">
+
       <div class="form-group">
         <label>📅 Ngày đầu tiên gặp nhau 💖</label>
         <input type="date" id="dateInput">
       </div>
+
       <div class="form-group">
         <label>🔐 Mật khẩu....</label>
         <input type="password" id="passInput" placeholder="..💕">
       </div>
+
       <div class="form-group">
         <button id="startBtn">Mở món quà 🎁</button>
       </div>
+
       <div id="passMsg"></div>
     </div>
-    <div class="intro-footer">Made with love - Chan 💕</div>
+
+    <div class="intro-footer">
+      Made with love - Chan 💕
+    </div>
+
   </div>
 </div>
  
-<!-- Màn Cinematic đếm ngược -->
 <div id="cinematicScreen" style="display:none;position:fixed;inset:0;z-index:999;background:#000;overflow:hidden;">
   <div class="letterbox top"></div>
-  <div class="letterbox bottom"></div>
+<div class="letterbox bottom"></div>
+  
   <canvas id="rainCanvas"></canvas>
+
   <div id="shakeLayer" style="position:absolute;inset:0;">
+
     <!-- Countdown -->
-    <div id="countdown" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;font-weight:900;color:#ff4fa2;text-shadow:0 0 20px #ff4fa2;"></div>
+    <div id="countdown" style="
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:120px;
+      font-weight:900;
+      color:#ff4fa2;
+      text-shadow:0 0 20px #ff4fa2;
+    "></div>
+
     <!-- Marvel Text -->
-    <div id="marvelText" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;letter-spacing:6px;color:white;opacity:0;transform:scale(0.5);text-shadow:0 0 30px #ff4fa2;text-align:center;">
+    <div id="marvelText" style="
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:42px;
+      font-weight:900;
+      letter-spacing:6px;
+      color:white;
+      opacity:0;
+      transform:scale(0.5);
+      text-shadow:0 0 30px #ff4fa2;
+    ">
       HAPPY BIRTHDAY MY LOVE
     </div>
   </div>
 </div>
 
-<!-- Màn trái tym độc quyền canvas -->
-<div id="pinkboardScreen" style="display:none;position:fixed;inset:0;background:#000;z-index:100;overflow:hidden;">
-  <canvas id="pinkboardCanvas" style="width:100%;height:100%;display:block;"></canvas>
-  <div id="birthdayRain"></div>
-  <button id="nextBtn" class="btn" style="position:absolute;top:20px;right:20px;z-index:200;">Tiếp tục 💕</button>
-</div>
 
-<!-- Màn 2: Nội dung chính lời chúc + Album -->
+<!-- Màn 2  -->
 <div class="hero" id="mainHero">
-  <button id="backToHeartBtn" class="btn" style="position:absolute;top:20px;left:20px;z-index:200;">Quay lại 💕</button>
+  <button id="backToHeartBtn" class="btn" style="position:absolute;top:20px;left:20px;z-index:200;">
+    Quay lại 💕
+  </button>
+
   <div class="falling" id="falling"></div>
   <div class="hero-bg"></div>
   <div class="container">
     <div class="card">
       <h2> HAPPY BIRTH DAY MY LOVE 💕 </h2>
-      <div class="sub">💕 TRƯƠNG VĂN CƯỜNG 💕</div>
+      <div class="sub">        💕 TRƯƠNG VĂN CƯỜNG 💕</div>
       <div class="sub"> 💕_19.05.1997 - 19.05.2026_💕 </div>
       <div class="typing" id="typing"><div id="typingText"></div><div class="cursor"></div></div>
-      
-      <div style="text-align:center;margin-bottom:12px;font-size:16px;color:#ffdc8a;text-shadow:0 0 10px #ff6b9f;">
-        💕Anh click vào mỗi tấm ảnh là 1 lời nhắn ạ 💕
-      </div>
-      
-      <!-- Hộp ảnh chính -->
+      <!-- <div class="count" id="count">
+        <div class="box"><div class="num" id="daysCount">--</div><div class="lbl">Ngày yêu rùi đó ha 💕</div></div>
+        <div class="box"><div class="num" id="hoursCount">--</div><div class="lbl">Giờ yêu nhau💕</div></div>
+        <div class="box"><div class="num" id="secondsCount">--</div><div class="lbl">Giây yêu nhau 💕</div></div>
+      </div> -->
+    <div style="text-align:center;margin-bottom:12px;font-size:18px;color:#ffdc8a;text-shadow:0 0 10px #ff6b9f;">
+  💕Anh click vào mỗi tấm ảnh là 1 lời nhắn ạ 💕
+</div>
+    <!-- Mấy cái hộp -->
       <div class="gallery" id="gallery">
         <img src="images/1.jpg" data-caption="I love you 3000, Chúc mừng sinh nhật anh yêu ❤️ Chúc anh tuổi mới luôn vui vẻ, mạnh khỏe và gặp nhiều may mắn trong cuộc sống. Em mong anh lúc nào cũng hạnh phúc như hôm nay! " alt="photo1">
         <img src="images/2.jpg" data-caption="Happy Birthday anh iu 🎉 Cảm ơn anh vì đã đến bên em, luôn yêu thương và chiều em. Mong anh mỗi ngày đều cười thật nhiều và bớt mệt mỏi đi nha 🥰💕" alt="photo2">
         <img src="images/3.jpg" data-caption="Sinh nhật vui vẻ nhé người em thương 💖 Mong mọi điều tốt đẹp nhất sẽ đến với anh, công việc thuận lợi, ước mơ đều thành hiện thực. Em luôn ở bên anh!" alt="photo3">
         <img src="images/5.jpg" data-caption="Sinh nhật anh năm nay đặc biệt hơn một chút… vì sắp tới mình sẽ phải yêu xa ❤️ Nhưng em không sợ đâu, chỉ cần anh vẫn luôn luôn yêu thương em là đủ. Dù ở đâu em cũng sẽ luôn đợi anh, nhớ anh và tin vào chúng ta 💋💕" alt="photo4">
       </div>
-      <div style="margin-top:16px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">
+      <div style="margin-top:16px;display:flex;gap:50px;flex-wrap:wrap">
         <button class="btn" id="openPopup">Mỗi lần click là 1 lời iu ạ💕 </button>
         <button class="btn" id="togglePics">Bật/Tắt ảnh rơi</button>
       </div>
@@ -334,14 +466,15 @@
         <div style="margin-top:12px">
           <label style="font-size:13px;opacity:0.9">Bài hát cũng như lời em muốn nói với anh ạ - Gửi anh xa nhớ💕 <span id="trackName"></span></label>
         </div>
+
       </div>
       <div class="card game" id="game"><div>Mỗi trái tym rơi và 1 lời nhắn ạ, nhớ đọc hết nhá!❤️</div></div>
+      <!-- <div class="card"><strong></strong><div class="sub"></div><input type="date" id="startDate" value="2026-05-04" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình bắt đầu là người yêu ạ ❤️</strong><div class="sub"></div><input type="date" id="endDate" value="2025-09-29" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình tròn 100 ngày iu nhau ha ❤️</div> -->
     </div>
   </div>
   <footer>i love you 3000 ❤️</footer>
 </div>
 
-<!-- Modal Popup -->
 <div class="modal" id="modal">
   <div class="modal-card">
     <img src="" id="modalImg">
@@ -353,32 +486,40 @@
   </div>
 </div>
 
-<!-- Audio Elements -->
 <audio id="heartMusic" loop src="hpbd.mp3"></audio>
 <audio id="mainMusic" loop src="music.mp3"></audio>
 
-<script>
-let audioUnlocked = false;
-let heartAnimationStarted = false;
-let pageInitialized = false;
+<!-- Màn trái tym  -->
+ 
+<div id="pinkboardScreen" style="display:none;position:fixed;inset:0;background:#000;z-index:100;overflow:hidden;">
+  <canvas id="pinkboardCanvas" style="width:100%;height:100%;display:block;"></canvas>
 
+  <div id="birthdayRain"></div>
+
+  <button id="nextBtn" class="btn" style="position:absolute;top:20px;right:20px;z-index:200;">
+    Tiếp tục 💕
+  </button>
+</div>
+
+<script>
+
+let audioUnlocked = false;
+// đoạn này là ở màn 1  
 const startBtn = document.getElementById('startBtn');
 const introScreen = document.getElementById('introScreen');
 const passMsg = document.getElementById('passMsg');
 
-const heartMusic = document.getElementById('heartMusic');
-const mainMusic = document.getElementById('mainMusic');
-
-// Khớp giá trị bảo mật đầu vào
-const correctDate = '2026-04-26'; 
-const correctPass = '1';      
-
+// Giá trị đúng
+const correctDate = '2026-04-26'; // ngày bắt đầu gặp
+const correctPass = 'bechanxinh040526';      // mật khẩu bí mật
+// Mật khẩu - đoạn này sửa tạm để tắt pass
 startBtn.addEventListener('click', async () => {
   const enteredDate = document.getElementById('dateInput').value;
   const enteredPass = document.getElementById('passInput').value;
 
   if (enteredDate === correctDate && enteredPass === correctPass) {
-    // 🔓 BẬT TÍNH NĂNG PHÁT - MỞ KHÓA AUDIO TRÊN ĐIỆN THOẠI (iOS/iPadOS Fix)
+
+    // 🔓 UNLOCK AUDIO NGAY LẦN CLICK ĐẦU (iPad fix)
     try {
       await heartMusic.play();
       heartMusic.pause();
@@ -389,43 +530,64 @@ startBtn.addEventListener('click', async () => {
       mainMusic.currentTime = 0;
 
       audioUnlocked = true;
-    } catch (e) {
-      console.log("Audio unlock failed: ", e);
-    }
+    } catch (e) {}
 
     introScreen.style.display = 'none';
+
+    // 👉 CHẠY CINEMATIC
     startCinematic();
+
   } else {
     passMsg.textContent = 'Sai mật khẩu rồi 😤 thử lại đi 💖';
   }
 });
-
-/* ========== TYPING TEXT EFFECT ========== */
-const phrases = [
-  'Chúc mừng sinh nhật my love - 29 tủi 💕',
-  'Chúc anh luôn hanh phúc, vui vẻ, thành công và may mắn trong cuộc sống 💕',
-  'I love you so much 💕 .',
-  'I miss you very much.'
-];
-
-let tEl = document.getElementById('typingText');
-let pIndex=0, cIndex=0; let deleting=false;
-function typeTick(){
-  if(!tEl) return;
-  const txt = phrases[pIndex];
-  if(!deleting){
-    tEl.textContent = txt.slice(0, cIndex+1);
-    cIndex++;
-    if(cIndex === txt.length){ setTimeout(()=>deleting=true,1200); }
-  } else {
-    tEl.textContent = txt.slice(0, cIndex-1);
-    cIndex--;
-    if(cIndex===0){ deleting=false; pIndex=(pIndex+1)%phrases.length; }
-  }
+// / tắt tạm pas:
+// startBtn.addEventListener('click', () => {
+//   introScreen.style.display = 'none';
+//   startCinematic();
+// });
+// gọi màn 2 
+// --- INIT PAGE ---
+function initPage() {
+  document.getElementById('mainHero').style.display = 'flex';
+  startTyping("Chúc mừng sinh nhật anh iu 💕");
+  startCounting();
+  initGallery();
+  initFallingPics();
+  initGame();
 }
-setInterval(typeTick,80);
+ 
 
-/* ========== RAIN EFFECT (CINEMATIC) ========== */
+
+
+ /* ========== SETTINGS ========== */
+    // Mặc định ngày bắt đầu: (edit nếu cần)
+    const defaultStart = '2026-05-04'; // thay bằng ngày 2 bạn bắt đầu (YYYY-MM-DD)
+    const day100Date = (dStr)=>{ const d=new Date(dStr); d.setDate(d.getDate()+99); return d; };
+
+    /* ========== TYPING TEXT ========== */
+    const phrases = [
+      'Chúc mừng sinh nhật my love - 29 tủi 💕',
+      'Chúc anh luôn hanh phúc, vui vẻ, thành công và may mắn trong cuộc sống 💕',
+      'I love you so much 💕  .',
+      'I miss you very much.'
+    ];
+
+    let tEl = document.getElementById('typingText');
+    let pIndex=0, cIndex=0; let deleting=false;
+    function typeTick(){
+      const txt = phrases[pIndex];
+      if(!deleting){
+        tEl.textContent = txt.slice(0, cIndex+1);
+        cIndex++;
+        if(cIndex === txt.length){ setTimeout(()=>deleting=true,1200); }
+      } else {
+        tEl.textContent = txt.slice(0, cIndex-1);
+        cIndex--;
+        if(cIndex===0){ deleting=false; pIndex=(pIndex+1)%phrases.length; }
+      }
+    }
+    setInterval(typeTick,80);
 function startRain() {
   const canvas = document.getElementById("rainCanvas");
   const ctx = canvas.getContext("2d");
@@ -436,6 +598,7 @@ function startRain() {
   const letters = "HAPPYBIRTHDAYMYLOVE01♥";
   const fontSize = 16;
   const columns = canvas.width / fontSize;
+
   const drops = Array(Math.floor(columns)).fill(1);
 
   function draw() {
@@ -455,10 +618,9 @@ function startRain() {
       drops[i]++;
     }
   }
+
   setInterval(draw, 40);
 }
-
-/* ========== START CINEMATIC COUNTDOWN ========== */
 function startCinematic() {
   const screen = document.getElementById("cinematicScreen");
   const countdown = document.getElementById("countdown");
@@ -466,145 +628,145 @@ function startCinematic() {
 
   screen.style.display = "block";
   screen.classList.add("fade-in");
+
   document.body.classList.add("shake");
 
   startRain();
+
   let count = 3;
 
   const timer = setInterval(() => {
     if (count > 0) {
+
       countdown.textContent = count;
+
       countdown.animate([
         { transform: "scale(0.5)", opacity: 0 },
         { transform: "scale(1.4)", opacity: 1 },
         { transform: "scale(1)", opacity: 1 }
-      ], { duration: 500, easing: "ease-out" });
+      ], {
+        duration: 500,
+        easing: "ease-out"
+      });
+
       count--;
+
     } else {
       clearInterval(timer);
+
       countdown.style.display = "none";
 
+      // chữ cinematic
       text.style.opacity = 1;
       text.classList.add("cinematic-zoom");
 
-      setTimeout(() => { screen.classList.add("fade-out"); }, 1800);
+      setTimeout(() => {
+        screen.classList.add("fade-out");
+      }, 1800);
+
       setTimeout(() => {
         document.body.classList.remove("shake");
         screen.style.display = "none";
-        showHeartScreen(); // Chuyển tiếp tới màn hình Trái tim
+        showHeartScreen();
       }, 2600);
     }
   }, 900);
 }
 
-/* ========== SHOW HEART SCREEN + MUSIC CONTEXT ========== */
-function showHeartScreen() {
-  document.getElementById('mainHero').style.display = 'none';
-  document.getElementById('pinkboardScreen').style.display = 'block';
-  
-  // Phát nhạc HPBD khi chuyển tới màn hình trái tim
-  if (audioUnlocked) {
-    try {
-      mainMusic.pause();
-      heartMusic.currentTime = 0;
-      heartMusic.play().catch(e => console.log("Autoplay blocked on iOS: ", e));
-    } catch(e) {}
-  }
-  
-  if (!heartAnimationStarted) {
-    startHeartAnimation();
-    heartAnimationStarted = true;
-  }
-}
+// Đêm số ngày + số giờ 
 
-/* ========== NEXT BUTTON (HEART SCREEN TO MAIN HERO) ========== */
-document.getElementById('nextBtn').addEventListener('click', () => {
-  document.getElementById('pinkboardScreen').style.display = 'none';
-  document.getElementById('mainHero').style.display = 'flex';
-  
-  // Đổi bài hát nền khi bấm tiếp tục
-  if (audioUnlocked) {
-    try {
-      heartMusic.pause();
-      mainMusic.play().catch(e => console.log(e));
-      document.getElementById('musicToggle').textContent = 'Pause';
-    } catch(e) {}
-  }
+// function startCounting() {
+//   const startDate = new Date(document.getElementById('startDate').value + 'T00:00:00');
+//   const daysCount = document.getElementById('daysCount');
+//   const hoursCount = document.getElementById('hoursCount');
+//   const secondsCount = document.getElementById('secondsCount');
 
-  if (!pageInitialized) {
-    // Kích hoạt các thành phần nội bộ nếu cần
-    pageInitialized = true;
-  }
-});
+//   function updateCount() {
+//     const now = new Date();
+//     const diff = now - startDate;
 
-/* ========== BACK TO HEART SCREEN BUTTON ========== */
-document.getElementById('backToHeartBtn').addEventListener('click', () => {
-  document.getElementById('mainHero').style.display = 'none';
-  document.getElementById('pinkboardScreen').style.display = 'block';
-  
-  if (audioUnlocked) {
-    try {
-      mainMusic.pause();
-      heartMusic.play().catch(e => console.log(e));
-    } catch(e) {}
-  }
-});
+//     // số ngày (không bao gồm ngày bắt đầu)
+//     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-/* ========== ALBUM GALLERY POPUP DETAIL ========== */
-const gallery = document.getElementById('gallery');
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
-const modalCaption = document.getElementById('modalCaption');
+//     // số giờ tổng cộng
+//     const hours = Math.floor(diff / (1000 * 60 * 60));
 
-gallery.addEventListener('click', (e)=>{
-  if(e.target.tagName==='IMG'){
-    modal.style.display='flex';
-    modalImg.src = e.target.src;
-    modalCaption.textContent = e.target.dataset.caption || '';
-    document.getElementById('modalTitle').textContent = 'Lời thương gửi anh 📝';
-  }
-});
-document.getElementById('closeModal').addEventListener('click', ()=> modal.style.display='none');
-modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.style.display='none' });
+//     // Số giây
 
-/* ========== FALLING PHOTOS BACKGROUND ========== */
-const falling = document.getElementById('falling');
-let fallEnabled = true;
-const sampleImgs = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg', 'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg'];
+//     const seconds = Math.floor(diff / 1000);
 
-function spawnImg(){
-  if(!fallEnabled || document.getElementById('mainHero').style.display === 'none') return;
-  const i = Math.floor(Math.random()*sampleImgs.length);
-  const img = document.createElement('img');
-  img.src = sampleImgs[i];
-  const startX = Math.random()*100;
-  const scale = 0.6 + Math.random()*0.5;
-  img.style.left = startX + '%';
-  img.style.transform = 'translateY(-120px) scale('+scale+') rotate('+ (Math.random()*24 - 12) +'deg)';
-  falling.appendChild(img);
 
-  const duration = 7000 + Math.random()*6000;
-  const endY = window.innerHeight + 200;
-  const start = performance.now();
-  function anim(now){
-    const t = (now - start)/duration;
-    if(t>=1){ img.remove(); return; }
-    img.style.top = (t*endY - 80) + 'px';
-    requestAnimationFrame(anim);
-  }
-  requestAnimationFrame(anim);
-}
-setInterval(spawnImg, 1000);
-document.getElementById('togglePics').addEventListener('click', ()=>{ fallEnabled = !fallEnabled; if(!fallEnabled) falling.innerHTML=''; });
+//     daysCount.textContent = days;
+//     hoursCount.textContent = hours;
+//     secondsCount.textContent = seconds;
+//   }
 
-/* ========== CONTROLS MUSIC FROM UI MÀN 2 ========== */
+//   updateCount(); // cập nhật khi load
+//   setInterval(updateCount, 1000); // cập nhật mỗi giây
+// }
+
+// startCounting();
+
+// popup click vào từng ảnh -> hineej chi tiết
+    /* ========== GALLERY MODAL ========== */
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+    gallery.addEventListener('click', (e)=>{
+      if(e.target.tagName==='IMG'){
+        modal.style.display='flex';
+        modalImg.src = e.target.src;
+        modalCaption.textContent = e.target.dataset.caption || '';
+      }
+    });
+    document.getElementById('closeModal').addEventListener('click', ()=> modal.style.display='none');
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.style.display='none' });
+
+    /* ========== FALLING PHOTOS ========== */
+    const falling = document.getElementById('falling');
+    let fallEnabled = true;
+    const sampleImgs = ['images/4.jpg','images/6.jpg','images/7.jpg','images/8.jpg','images/10.jpg','images/1.jpg', 'images/3.jpg', 'images/2.jpg'];
+
+    function spawnImg(){
+      if(!fallEnabled) return;
+      const i = Math.floor(Math.random()*sampleImgs.length);
+      const img = document.createElement('img');
+      img.src = sampleImgs[i];
+      const startX = Math.random()*100;
+      const scale = 0.7 + Math.random()*0.6;
+      img.style.left = startX + '%';
+      img.style.transform = 'translateY(-120px) scale('+scale+') rotate('+ (Math.random()*25 - 12) +'deg)';
+      img.style.opacity = 0.95;
+      falling.appendChild(img);
+
+      // animate using JS
+      const duration = 8000 + Math.random()*7000;
+      const endY = window.innerHeight + 200;
+      const start = performance.now();
+      function anim(now){
+        const t = (now - start)/duration;
+        if(t>=1){ img.remove(); return; }
+        img.style.top = (t*endY - 80) + 'px';
+        requestAnimationFrame(anim);
+      }
+      requestAnimationFrame(anim);
+    }
+    let fallInt = setInterval(spawnImg, 800);
+    document.getElementById('togglePics').addEventListener('click', ()=>{ fallEnabled = !fallEnabled; if(!fallEnabled) falling.innerHTML=''; });
+
+    /* ========== MUSIC CONTROL ========== */
+    const heartMusic = document.getElementById('heartMusic');
+const mainMusic = document.getElementById('mainMusic');
+
 const musicToggle = document.getElementById('musicToggle');
 const trackName = document.getElementById('trackName');
+
 trackName.textContent = 'music.mp3';
 
 musicToggle.addEventListener('click', () => {
   if (mainMusic.paused) {
-    mainMusic.play().catch(e => console.log(e));
+    mainMusic.play();
     musicToggle.textContent = 'Pause';
   } else {
     mainMusic.pause();
@@ -612,8 +774,12 @@ musicToggle.addEventListener('click', () => {
   }
 });
 
-/* ========== BUTTON RANDOM MESSAGES POPUP ========== */
+    /* optional: show play button automatically for browsers that allow it */
+    document.addEventListener('click', ()=>{ /* user gesture unlock */ }, {once:true});
+
+    /* ========== RANDOM MESSAGE POPUP ========== */
 document.getElementById('openPopup').addEventListener('click', () => {
+
   const messages = [
     'Em yêu anh nhiều lắm 💋',
     'Chúc anh sinh nhật vui vẻ, tuổi mới hạnh phúc và thành công hơn nữa nhé 💕',
@@ -621,8 +787,15 @@ document.getElementById('openPopup').addEventListener('click', () => {
     'Mong rằng chúng ta sẽ luôn bên nhau, cùng nhau vượt qua mọi khó khăn và thử thách 💕',
     'I MISS YOU SO MUCH 💋'
   ];
-  const images = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/5.jpg'];
-  
+
+  const images = [
+    'images/1.jpg',
+    'images/4.jpg',
+    'images/8.jpg',
+    'images/9.jpg',
+    'images/7.jpg'
+  ];
+
   const m = messages[Math.floor(Math.random() * messages.length)];
   const img = images[Math.floor(Math.random() * images.length)];
 
@@ -632,72 +805,106 @@ document.getElementById('openPopup').addEventListener('click', () => {
   modalCaption.textContent = m;
 });
 
-/* ========== HEART CATCH MINI GAME ========== */
-const game = document.getElementById('game');
-function spawnHeart(){
-  if(document.getElementById('mainHero').style.display === 'none') return;
-  const h = document.createElement('div');
-  h.className='heart';
-  h.innerHTML='❤';
-  h.style.left = Math.random()*85 + '%';
-  h.style.top = '-40px';
-  h.style.color = '#ff6b9f';
-  h.style.fontSize = (18 + Math.random()*20) + 'px';
-  game.appendChild(h);
-  
-  const fallD = 3500 + Math.random()*2500;
-  const start = performance.now();
-  function anim(now){
-    const t=(now-start)/fallD;
-    if(t>=1){ h.remove(); return; }
-    h.style.top = (t*140) + 'px';
-    requestAnimationFrame(anim);
-  }
-  requestAnimationFrame(anim);
+    /* ========== HEART CATCH GAME ========== */
+    const game = document.getElementById('game');
+    function spawnHeart(){
+      const h = document.createElement('div');
+      h.className='heart';
+      h.innerHTML='❤';
+      const left = Math.random()*80 + '%';
+      h.style.left = left;
+      h.style.top = '-40px';
+      h.style.fontSize = (18 + Math.random()*22) + 'px';
+      game.appendChild(h);
+      const fallD = 4000 + Math.random()*3000;
+      const start = performance.now();
+      function anim(now){
+        const t=(now-start)/fallD;
+        if(t>=1){ h.remove(); return; }
+        h.style.top = (t*160) + 'px';
+        requestAnimationFrame(anim);
+      }
+      requestAnimationFrame(anim);
 
-  h.addEventListener('click', ()=>{
+h.addEventListener('click', ()=>{
     h.remove();
+
+    // lời nhắn
     const lines = [
-      'i love you 💋',
-      'Yêu anh nhìu lắm, gửi đến anh nghìn nụ hôn ạ💋💋💋💋💋💋💋',
-      'i miss you ~ Chúc mình cùng nhau cố gắng hơn nhá anh iu 💋'
+        'i love you 💋',
+        'Yêu anh nhìu lắm, gửi đến anh nghìn nụ hôn ạ💋💋💋💋💋💋💋',
+        'i miss you ~ Chúc mình cùng nhau cố gắng hơn nhá anh iu 💋'
     ];
-    const images = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/5.jpg'];
+
+    // danh sách ảnh
+    const images = [
+        'images/4.jpg',
+        'images/5.jpg',
+        'images/6.jpg',
+        'images/7.jpg'
+    ];
+
+    const m = lines[Math.floor(Math.random() * lines.length)];
+    const img = images[Math.floor(Math.random() * images.length)];
 
     modal.style.display = 'flex';
-    modalImg.src = images[Math.floor(Math.random() * images.length)];
+    modalImg.src = img;
     document.getElementById('modalTitle').textContent = 'Lời em muốn nói💋';
-    modalCaption.textContent = lines[Math.floor(Math.random() * lines.length)];
-  });
-}
-setInterval(spawnHeart, 1500);
+    modalCaption.textContent = m;
+});
+    }
+    setInterval(spawnHeart, 1600);
 
-/* ========== MAIN ENGINE: CANVAS HEART ANIMATION ========== */
+    /* ========== INIT: create some initial falling pics quickly ========== */
+    for(let i=0;i<6;i++){ setTimeout(spawnImg, i*300); }
+
+    /* ========== HELPER: compute day100 Date string for display (optional) ========== */
+    function format(d){ return d.toLocaleDateString(); }
+    const d100 = day100Date(defaultStart);
+
+// đoạn này là màn trái tym 
 function startHeartAnimation() {
   var canvas = document.getElementById('pinkboardCanvas');
   var ctx = canvas.getContext('2d');
-  var settings = { particles: { length:2000, duration:4, velocity:80, effect:-1.3, size:8 } };
 
-  var Point=(function(){
-    function Point(x,y){this.x=x||0;this.y=y||0;}
+
+  // SETTINGS
+  var settings = { particles: { length:3000, duration:4, velocity:80, effect:-1.3, size:8 } };
+
+  // requestAnimationFrame polyfill
+  (function(){var b=0,c=["ms","moz","webkit","o"];
+    for(var a=0;a<c.length&&!window.requestAnimationFrame;++a){
+      window.requestAnimationFrame=window[c[a]+"RequestAnimationFrame"];
+      window.cancelAnimationFrame=window[c[a]+"CancelAnimationFrame"]||window[c[a]+"CancelRequestAnimationFrame"]}
+    if(!window.requestAnimationFrame){
+      window.requestAnimationFrame=function(h,e){
+        var d=new Date().getTime();
+        var f=Math.max(0,16-(d-b));
+        var g=window.setTimeout(function(){h(d+f)},f);b=d+f;return g}}
+    if(!window.cancelAnimationFrame){
+      window.cancelAnimationFrame=function(d){clearTimeout(d)}}}());
+
+  // POINT
+  var Point=(function(){function Point(x,y){this.x=x||0;this.y=y||0;}
     Point.prototype.clone=function(){return new Point(this.x,this.y)};
-    Point.prototype.length=function(l){if(l===undefined)return Math.sqrt(this.x*this.x+this.y*this.y);this.normalize();this.x*=l;this.y*=l;return this};
-    Point.prototype.normalize=function(){var l=this.length();this.x/=l;this.y/=l;return this};
-    return Point;
-  })();
+    Point.prototype.length=function(l){if(l===undefined)return Math.sqrt(this.x*this.x+this.y*this.y);
+      this.normalize(); this.x*=l; this.y*=l; return this};
+    Point.prototype.normalize=function(){var l=this.length(); this.x/=l; this.y/=l; return this};
+    return Point;})();
 
+  // PARTICLE
   var Particle=(function(){
-    function Particle(){this.position=new Point();this.velocity=new Point();this.acceleration=new Point();this.age=0;}
+    function Particle(){this.position=new Point(); this.velocity=new Point(); this.acceleration=new Point(); this.age=0;}
     Particle.prototype.initialize=function(x,y,dx,dy){
-      this.position.x=x;this.position.y=y;
-      this.velocity.x=dx;this.velocity.y=dy;
+      this.position.x=x; this.position.y=y;
+      this.velocity.x=dx; this.velocity.y=dy;
       this.acceleration.x=dx*settings.particles.effect;
       this.acceleration.y=dy*settings.particles.effect;
       this.age=0;
     };
     Particle.prototype.update=function(dt){
-      this.position.x+=this.velocity.x*dt;this.position.y+=this.velocity.y*dt;
-      this.velocity.x+=this.acceleration.x*dt;this.velocity.y+=this.acceleration.y*dt;
+      this.position.x+=this.velocity.x*dt; this.position.y+=this.velocity.y*dt;
+      this.velocity.x+=this.acceleration.x*dt; this.velocity.y+=this.acceleration.y*dt;
       this.age+=dt;
     };
     Particle.prototype.draw=function(ctx,image){
@@ -709,52 +916,45 @@ function startHeartAnimation() {
     return Particle;
   })();
 
+  // PARTICLE POOL
   var ParticlePool=(function(){
     var particles, firstActive=0, firstFree=0, duration=settings.particles.duration;
-    function ParticlePool(length){particles=new Array(length);for(var i=0;i<length;i++)particles[i]=new Particle();}
-    ParticlePool.prototype.add=function(x,y,dx,dy){
-      particles[firstFree].initialize(x,y,dx,dy);
-      firstFree++;if(firstFree==particles.length)firstFree=0;
-      if(firstActive==firstFree)firstActive++;if(firstActive==particles.length)firstActive=0;
-    };
+    function ParticlePool(length){particles=new Array(length); for(var i=0;i<length;i++)particles[i]=new Particle();}
+    ParticlePool.prototype.add=function(x,y,dx,dy){particles[firstFree].initialize(x,y,dx,dy);
+      firstFree++; if(firstFree==particles.length)firstFree=0;
+      if(firstActive==firstFree)firstActive++; if(firstActive==particles.length)firstActive=0;};
     ParticlePool.prototype.update=function(dt){
       if(firstActive<firstFree){for(var i=firstActive;i<firstFree;i++)particles[i].update(dt);}
-      if(firstFree<firstActive){for(var i=firstActive;i<particles.length;i++)particles[i].update(dt);for(var i=0;i<firstFree;i++)particles[i].update(dt);}
-      while(particles[firstActive].age>=duration && firstActive!=firstFree){firstActive++;if(firstActive==particles.length)firstActive=0;}
-    };
+      if(firstFree<firstActive){for(var i=firstActive;i<particles.length;i++)particles[i].update(dt); for(var i=0;i<firstFree;i++)particles[i].update(dt);}
+      while(particles[firstActive].age>=duration && firstActive!=firstFree){firstActive++; if(firstActive==particles.length)firstActive=0;}};
     ParticlePool.prototype.draw=function(ctx,image){
       if(firstActive<firstFree){for(var i=firstActive;i<firstFree;i++)particles[i].draw(ctx,image);}
-      if(firstFree<firstActive){for(var i=firstActive;i<particles.length;i++)particles[i].draw(ctx,image);for(var i=0;i<firstFree;i++)particles[i].draw(ctx,image);}
-    };
+      if(firstFree<firstActive){for(var i=firstActive;i<particles.length;i++)particles[i].draw(ctx,image); for(var i=0;i<firstFree;i++)particles[i].draw(ctx,image);}};
     return ParticlePool;
   })();
 
+  // POINT ON HEART
   function pointOnHeart(t){return new Point(
     160*Math.pow(Math.sin(t),3),
     130*Math.cos(t)-50*Math.cos(2*t)-20*Math.cos(3*t)-10*Math.cos(4*t)+25
   );}
 
+  // IMAGE
   var image=(function(){
     var c=document.createElement('canvas'), ctx2=c.getContext('2d');
-    c.width=settings.particles.size;c.height=settings.particles.size;
-    function to(t){var p=pointOnHeart(t);p.x=settings.particles.size/2+p.x*settings.particles.size/350;p.y=settings.particles.size/2-p.y*settings.particles.size/350;return p;}
-    ctx2.beginPath();var t=-Math.PI;var p=to(t);ctx2.moveTo(p.x,p.y);
-    while(t<Math.PI){t+=0.01;p=to(t);ctx2.lineTo(p.x,p.y);}ctx2.closePath();
-    ctx2.fillStyle='#ff6b9f';ctx2.fill();
-    var img=new Image();img.src=c.toDataURL();return img;
+    c.width=settings.particles.size; c.height=settings.particles.size;
+    function to(t){var p=pointOnHeart(t); p.x=settings.particles.size/2+p.x*settings.particles.size/350; p.y=settings.particles.size/2-p.y*settings.particles.size/350; return p;}
+    ctx2.beginPath(); var t=-Math.PI; var p=to(t); ctx2.moveTo(p.x,p.y);
+    while(t<Math.PI){t+=0.01;p=to(t); ctx2.lineTo(p.x,p.y);} ctx2.closePath();
+    ctx2.fillStyle='#f50b02'; ctx2.fill();
+    var img=new Image(); img.src=c.toDataURL(); return img;
   })();
 
-  var particles=new ParticlePool(settings.particles.length);
-  var particleRate=settings.particles.length/settings.particles.duration;
-  var time;
+  var particles=new ParticlePool(settings.particles.length), particleRate=settings.particles.length/settings.particles.duration, time;
 
   function render(){
-    if(document.getElementById('pinkboardScreen').style.display === 'none') {
-      requestAnimationFrame(render);
-      return;
-    }
     requestAnimationFrame(render);
-    var newTime=new Date().getTime()/1000, dt=newTime-(time||newTime);time=newTime;
+    var newTime=new Date().getTime()/1000, dt=newTime-(time||newTime); time=newTime;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     var amount=particleRate*dt;
     for(var i=0;i<amount;i++){
@@ -762,17 +962,235 @@ function startHeartAnimation() {
       var dir=pos.clone().length(settings.particles.velocity);
       particles.add(canvas.width/2+pos.x,canvas.height/2-pos.y,dir.x,-dir.y);
     }
-    particles.update(dt);particles.draw(ctx,image);
+    particles.update(dt); particles.draw(ctx,image);
   }
 
-  function onResize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', onResize);
-  onResize();
-  render();
+function onResize(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
-</script>
+window.addEventListener('resize', onResize);
+onResize();
+render();
+}
+
+let heartAnimationStarted = false;
+
+function showHeartScreen() {
+  document.getElementById('mainHero').style.display = 'none';
+  document.getElementById('pinkboardScreen').style.display = 'block';
+  
+if (audioUnlocked) {
+    heartMusic.play().catch(e => console.log("Chưa phát được nhạc:", e));
+  }
+  // Tắt nhạc màn kỷ niệm
+  mainMusic.pause();
+  mainMusic.currentTime = 0;
+  musicToggle.textContent = 'Play';
+
+  // 🔥 CHỈ PLAY NẾU ĐÃ UNLOCK (QUAN TRỌNG)
+  if (audioUnlocked) {
+    setTimeout(() => {
+      heartMusic.currentTime = 0;
+      heartMusic.play().catch(() => {});
+    }, 100);
+  }
+
+  // QUAN TRỌNG: ép layout render lại trước khi vẽ canvas
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize'));
+
+    if (!heartAnimationStarted) {
+      startHeartAnimation();
+      heartAnimationStarted = true;
+    }
+  }, 50);
+
+  // MƯA CHỮ
+  if (typeof startBirthdayRain === 'function') {
+    startBirthdayRain();
+  }
+}
+// BUTTON EVENTS
+
+// document.getElementById('pinkboardbtn').onclick = function() {
+//   showHeartScreen();
+// };
+
+document.getElementById('nextBtn').onclick = function() {
+  // Tắt nhạc màn trái tym
+  heartMusic.pause();
+  heartMusic.currentTime = 0;
+
+  // Ẩn màn trái tym
+  document.getElementById('pinkboardScreen').style.display = 'none';
+
+  // Hiện màn 2
+  initPage();
+};
+
+// MƯA CHỮ HAPPY BIRTHDAY
+let birthdayRainStarted = false;
+
+function startBirthdayRain() {
+
+  if (birthdayRainStarted) return;
+  birthdayRainStarted = true;
+
+  const rainBox = document.getElementById('birthdayRain');
+
+  rainBox.innerHTML = '';
+
+  // chữ chạy dọc
+  const text = "HAPPYBIRTHDAY";
+
+  // khoảng cách cột
+  const columnWidth = 16;
+
+  // số cột full màn hình
+  const columns = Math.floor(window.innerWidth / columnWidth);
+
+  for (let i = 0; i < columns; i++) {
+
+    const col = document.createElement('div');
+
+    col.style.position = 'absolute';
+    col.style.left = (i * columnWidth) + 'px';
+
+    // random để rơi từ trên xuống ngay
+    col.style.top =
+      (-Math.random() * window.innerHeight) + 'px';
+
+    col.style.display = 'flex';
+    col.style.flexDirection = 'column';
+    col.style.alignItems = 'center';
+
+    // tốc độ random
+    const speed = 5 + Math.random() * 4;
+
+    col.style.animation =
+      `birthdayColumnFall ${speed}s linear infinite`;
+
+    // KHÔNG delay
+    col.style.animationDelay = '0s';
+
+    // tạo ký tự
+    for (let j = 0; j < 55; j++) {
+
+      const span = document.createElement('span');
+
+      // cuối mỗi cột có trái tim
+      if (j === 54 && Math.random() > 0.35) {
+
+        span.innerHTML = '♥';
+
+        span.style.color = '#ff5fa2';
+
+        span.style.fontSize = '18px';
+
+        span.style.textShadow = `
+          0 0 6px #ff5fa2,
+          0 0 12px #ff5fa2,
+          0 0 24px #ff99c8
+        `;
+
+      } else {
+
+span.textContent = text[j % text.length];
+
+        // Ombre đồng đều từ trên xuống dưới
+const fade = 1 - (j / 55);
+
+// màu đồng đều
+span.style.color = '#ff7eb8';
+
+// nhạt dần xuống dưới
+span.style.opacity = fade;
+
+// KHÔNG phát sáng
+span.style.textShadow = 'none';
+      }
+
+      span.style.width = '18px';
+      span.style.height = '18px';
+
+      span.style.display = 'flex';
+      span.style.alignItems = 'center';
+      span.style.justifyContent = 'center';
+
+      span.style.fontSize = '18px';
+      span.style.fontWeight = '700';
+      span.style.fontFamily = 'monospace';
+
+      col.appendChild(span);
+    }
+
+    rainBox.appendChild(col);
+  }
+
+  // DÒNG CHỮ DƯỚI
+const bottomText = document.createElement('div');
+
+bottomText.innerHTML =
+  'Chúc mừng sinh nhật anh iu - Trương Cường ♡';
+
+bottomText.style.position = 'absolute';
+bottomText.style.bottom = '170px';
+bottomText.style.left = '50%';
+bottomText.style.transform = 'translateX(-50%)';
+
+bottomText.style.fontSize = '25px';
+bottomText.style.fontWeight = '1000';
+
+bottomText.style.fontFamily = 'cursive';
+
+// hiệu ứng gradient đổi màu
+// bottomText.style.background =
+//   'linear-gradient(90deg,#ff5fa2,#ffd6ec,#fff,#ff99c8,#ff5fa2)';
+
+  // Ombre chữ từ đậm -> nhạt dần xuống dưới
+bottomText.style.background =
+  'linear-gradient(to bottom, #ff4f95 0%, #ff7eb8 35%, #ffc7df 70%, #fff3f8 100%)';
+
+// bottomText.style.backgroundSize = '400% auto';
+bottomText.style.backgroundSize = '100% 300%';
+
+bottomText.style.webkitBackgroundClip = 'text';
+bottomText.style.webkitTextFillColor = 'transparent';
+
+// bottomText.style.animation =
+//   'colorShift 5s linear infinite';
+
+bottomText.style.animation =
+  'ombreFlow 4s linear infinite';
+
+bottomText.style.whiteSpace = 'nowrap';
+
+bottomText.style.textShadow = `
+  0 0 10px rgba(255,95,162,0.8),
+  0 0 20px rgba(255,95,162,0.7),
+  0 0 40px rgba(255,153,200,0.8)
+`;
+
+bottomText.style.zIndex = '50';
+
+rainBox.appendChild(bottomText);
+}
+document.getElementById('backToHeartBtn').onclick = function() {
+  // Tắt nhạc màn kỷ niệm
+  mainMusic.pause();
+  mainMusic.currentTime = 0;
+  musicToggle.textContent = 'Play';
+
+  // Ẩn màn kỷ niệm
+  document.getElementById('mainHero').style.display = 'none';
+
+  // Hiện lại màn trái tym
+  showHeartScreen();
+};
+
+  </script>
+
+
 </body>
 </html>
