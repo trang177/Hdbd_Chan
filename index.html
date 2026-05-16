@@ -121,7 +121,13 @@ html,body{height:100%;margin:0;padding:0;font-family:Inter,ui-sans-serif,system-
   opacity:0.7;
   color:#fff;
 }
-
+#cinematicScreen::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6));
+  pointer-events:none;
+}
 
 
 /* HERO */
@@ -158,9 +164,11 @@ h1{font-size:48px;margin:0 0 12px;letter-spacing:2px;color:var(--accent);text-sh
   position:fixed;
   inset:0;
   display:none;
-  align-items:flex-end;
+
   justify-content:center;
-  background:rgba(0,0,0,0.2); /* mờ nhẹ thôi */
+  align-items:center;
+
+  background:rgba(0,0,0,0.6); /* tối hơn cho nổi popup */
   z-index:50;
   padding:20px;
 }
@@ -257,6 +265,69 @@ canvas{position:absolute;width:100%;height:100%}
     transform: translateY(120vh);
   }
 }
+@keyframes shake {
+  0%{transform:translate(0,0)}
+  25%{transform:translate(-5px,5px)}
+  50%{transform:translate(5px,-5px)}
+  75%{transform:translate(-3px,3px)}
+  100%{transform:translate(0,0)}
+}
+
+.shake {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes zoomIn {
+  0%{transform:scale(0.3);opacity:0}
+  100%{transform:scale(1.2);opacity:1}
+}
+
+@keyframes shockwave {
+  0%{transform:scale(0);opacity:1;border:2px solid #ff4fa2;}
+  100%{transform:scale(4);opacity:0;}
+}
+
+
+
+.letterbox{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:80px;
+  background:black;
+  z-index:1000;
+}
+
+.letterbox.top{ top:0; }
+.letterbox.bottom{ bottom:0; }
+
+.cinematic-zoom{
+  animation: cinematicZoom 3s ease-in-out forwards;
+}
+
+@keyframes cinematicZoom{
+  0%{ transform:scale(1); filter:blur(0px); }
+  50%{ transform:scale(1.15); filter:blur(1px); }
+  100%{ transform:scale(1); filter:blur(0px); }
+}
+
+.fade-in{
+  animation: fadeIn 1s ease forwards;
+}
+
+.fade-out{
+  animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes fadeOut{
+  from{opacity:1}
+  to{opacity:0}
+}
 </style>
 
 </head>
@@ -308,6 +379,49 @@ canvas{position:absolute;width:100%;height:100%}
 
   </div>
 </div>
+ 
+<div id="cinematicScreen" style="display:none;position:fixed;inset:0;z-index:999;background:#000;overflow:hidden;">
+  <div class="letterbox top"></div>
+<div class="letterbox bottom"></div>
+  
+  <canvas id="rainCanvas"></canvas>
+
+  <div id="shakeLayer" style="position:absolute;inset:0;">
+
+    <!-- Countdown -->
+    <div id="countdown" style="
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:120px;
+      font-weight:900;
+      color:#ff4fa2;
+      text-shadow:0 0 20px #ff4fa2;
+    "></div>
+
+    <!-- Marvel Text -->
+    <div id="marvelText" style="
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:42px;
+      font-weight:900;
+      letter-spacing:6px;
+      color:white;
+      opacity:0;
+      transform:scale(0.5);
+      text-shadow:0 0 30px #ff4fa2;
+    ">
+      HAPPY BIRTHDAY MY LOVE
+    </div>
+
+  </div>
+</div>
+
 
 <!-- Màn 2  -->
 <div class="hero" id="mainHero">
@@ -320,8 +434,8 @@ canvas{position:absolute;width:100%;height:100%}
   <div class="container">
     <div class="card">
       <h2> HAPPY BIRTH DAY MY LOVE 💕 </h2>
-      <div class="sub">        💕 _19.05.1997 - 19.05.2026_ 💕</div>
-      <div class="sub"> 💕Ngàn lời iu thương gửi đến anh ạ💕 </div>
+      <div class="sub">        💕 TRƯƠNG VĂN CƯỜNG 💕</div>
+      <div class="sub"> 💕_19.05.1997 - 19.05.2026_💕 </div>
       <div class="typing" id="typing"><div id="typingText"></div><div class="cursor"></div></div>
       <!-- <div class="count" id="count">
         <div class="box"><div class="num" id="daysCount">--</div><div class="lbl">Ngày yêu rùi đó ha 💕</div></div>
@@ -333,10 +447,10 @@ canvas{position:absolute;width:100%;height:100%}
 </div>
     <!-- Mấy cái hộp -->
       <div class="gallery" id="gallery">
-        <img src="images/1.jpg" data-caption="I love you 3000, Gửi đến anh đầy ắp tình yêu thương của em ạ. Em nhớ bbi cụa em nhìu lắm, bbi cụa em có nhớ em khum zị, huuhuhhu ~~ Em bic iu xa bùn lắm, em cx bùn, cx tủi thân lắm vì chả đc ở bên ng iu nhìu, mấy ngày đặc biệt thì cx chả gặp đc nhau nên bé làm món quà nho nhỏ này tặng cho bbi cụa em nhá 💋. Đây cũng là lần đầu tiên em chú tâm học hỏi để làm ra đc web này đấy bbi ạ. SUY ra anh phải bic em yêu anh nhiều lắm đấy nhá💋 " alt="photo1">
-        <img src="images/2.jpg" data-caption="I miss You. Chắc bbi cụa em cx bất ngờ ha, thấy em siu khum, heheh, quá siu lun đúng khum, heheh. Bbi cụa em iu thương em nhiều hơn nhá, nhường nhịn em xíu đi mừ, em là embess của anh mừ. Em chỉ mún nói là "EM yêu anh/ Em yêu chồng nhìu lắm ạ💋💕" alt="photo2">
-        <img src="images/3.jpg" data-caption="Phải iu thương em nhiều hơn đấy ạ. i love you 3000 ❤️💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕" alt="photo3">
-        <img src="images/5.jpg" data-caption="Chúng mình cùng nhau cố gắng hơn nhá anh iu. Biết iu xa là khó nhưng mà chúng ra hãy cố lên, hãy vì nhau mà cố gắng nhá. Em mong rằng chúc ta có thể ở mãi bên nhau - và có 1 cái kết thật là đẹp với nhau ạ 💋💕" alt="photo4">
+        <img src="images/1.jpg" data-caption="I love you 3000, Chúc mừng sinh nhật anh yêu ❤️ Chúc anh tuổi mới luôn vui vẻ, mạnh khỏe và gặp nhiều may mắn trong cuộc sống. Em mong anh lúc nào cũng hạnh phúc như hôm nay! " alt="photo1">
+        <img src="images/2.jpg" data-caption="Happy Birthday anh iu 🎉 Cảm ơn anh vì đã đến bên em, luôn yêu thương và chiều em. Mong anh mỗi ngày đều cười thật nhiều và bớt mệt mỏi đi nha 🥰💕" alt="photo2">
+        <img src="images/3.jpg" data-caption="Sinh nhật vui vẻ nhé người em thương 💖 Mong mọi điều tốt đẹp nhất sẽ đến với anh, công việc thuận lợi, ước mơ đều thành hiện thực. Em luôn ở bên anh!" alt="photo3">
+        <img src="images/5.jpg" data-caption="Sinh nhật anh năm nay đặc biệt hơn một chút… vì sắp tới mình sẽ phải yêu xa ❤️ Nhưng em không sợ đâu, chỉ cần anh vẫn luôn luôn yêu thương em là đủ. Dù ở đâu em cũng sẽ luôn đợi anh, nhớ anh và tin vào chúng ta 💋💕" alt="photo4">
       </div>
       <div style="margin-top:16px;display:flex;gap:50px;flex-wrap:wrap">
         <button class="btn" id="openPopup">Mỗi lần click là 1 lời iu ạ💕 </button>
@@ -355,7 +469,7 @@ canvas{position:absolute;width:100%;height:100%}
         </div>
 
       </div>
-      <div class="card game" id="game"><div>Anh chạm vào trái tim rơi để mở lời yêu th thương của bé nh, Mỗi trái tym là một lời yêu thương bé gửi đến anh ạ, nhớ đọc hết nhá!❤️</div></div>
+      <div class="card game" id="game"><div>Mỗi trái tym rơi và 1 lời nhắn ạ, nhớ đọc hết nhá!❤️</div></div>
       <!-- <div class="card"><strong></strong><div class="sub"></div><input type="date" id="startDate" value="2026-05-04" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình bắt đầu là người yêu ạ ❤️</strong><div class="sub"></div><input type="date" id="endDate" value="2025-09-29" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình tròn 100 ngày iu nhau ha ❤️</div> -->
     </div>
   </div>
@@ -415,7 +529,7 @@ const correctPass = '1';      // mật khẩu bí mật
 
 startBtn.addEventListener('click', () => {
   introScreen.style.display = 'none';
-  showHeartScreen();
+  startCinematic();
 });
 // gọi màn 2 
 // --- INIT PAGE ---
@@ -459,8 +573,90 @@ function initPage() {
       }
     }
     setInterval(typeTick,80);
+function startRain() {
+  const canvas = document.getElementById("rainCanvas");
+  const ctx = canvas.getContext("2d");
 
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
+  const letters = "HAPPYBIRTHDAYMYLOVE01♥";
+  const fontSize = 16;
+  const columns = canvas.width / fontSize;
+
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0,0,0,0.08)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#ff4fa2";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 40);
+}
+function startCinematic() {
+  const screen = document.getElementById("cinematicScreen");
+  const countdown = document.getElementById("countdown");
+  const text = document.getElementById("marvelText");
+
+  screen.style.display = "block";
+  screen.classList.add("fade-in");
+
+  document.body.classList.add("shake");
+
+  startRain();
+
+  let count = 3;
+
+  const timer = setInterval(() => {
+    if (count > 0) {
+
+      countdown.textContent = count;
+
+      countdown.animate([
+        { transform: "scale(0.5)", opacity: 0 },
+        { transform: "scale(1.4)", opacity: 1 },
+        { transform: "scale(1)", opacity: 1 }
+      ], {
+        duration: 500,
+        easing: "ease-out"
+      });
+
+      count--;
+
+    } else {
+      clearInterval(timer);
+
+      countdown.style.display = "none";
+
+      // chữ cinematic
+      text.style.opacity = 1;
+      text.classList.add("cinematic-zoom");
+
+      setTimeout(() => {
+        screen.classList.add("fade-out");
+      }, 1800);
+
+      setTimeout(() => {
+        document.body.classList.remove("shake");
+        screen.style.display = "none";
+        showHeartScreen();
+      }, 2600);
+    }
+  }, 900);
+}
 
 // Đêm số ngày + số giờ 
 
@@ -567,20 +763,32 @@ musicToggle.addEventListener('click', () => {
     document.addEventListener('click', ()=>{ /* user gesture unlock */ }, {once:true});
 
     /* ========== RANDOM MESSAGE POPUP ========== */
-    document.getElementById('openPopup').addEventListener('click', ()=>{
-      const messages = [
-        ' I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  I love you 💋  .',
-        'Choassssss PTD 💋 Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD 💋Choassssss PTD  ',
-        'Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋 Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋Chị Chan vừa xinh + bắn hay -> pờ rồ, ăng này mê điêng 💋',
-        'Gửi anh nhìu nụ hôn ở đây 💋 Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋Gửi anh nhìu nụ hôn ở đây 💋'
-      ];
-      const m = messages[Math.floor(Math.random()*messages.length)];
-      // show modal as simple text card
-      modal.style.display='flex';
-      modalImg.src='images/10.jpg';
-      document.getElementById('modalTitle').textContent = 'Lời bất ngờ';
-      modalCaption.textContent = m;
-    });
+document.getElementById('openPopup').addEventListener('click', () => {
+
+  const messages = [
+    'Em yêu anh nhiều lắm 💋',
+    'Chúc anh sinh nhật vui vẻ, tuổi mới hạnh phúc và thành công hơn nữa nhé 💕',
+    'Cảm ơn anh vì đã luôn yêu thương và chăm sóc em 💕',
+    'Mong rằng chúng ta sẽ luôn bên nhau, cùng nhau vượt qua mọi khó khăn và thử thách 💕',
+    'I MISS YOU SO MUCH 💋'
+  ];
+
+  const images = [
+    'images/1.jpg',
+    'images/4.jpg',
+    'images/8.jpg',
+    'images/9.jpg',
+    'images/7.jpg'
+  ];
+
+  const m = messages[Math.floor(Math.random() * messages.length)];
+  const img = images[Math.floor(Math.random() * images.length)];
+
+  modal.style.display = 'flex';
+  modalImg.src = img;
+  document.getElementById('modalTitle').textContent = 'Lời bất ngờ 💌';
+  modalCaption.textContent = m;
+});
 
     /* ========== HEART CATCH GAME ========== */
     const game = document.getElementById('game');
@@ -603,13 +811,32 @@ musicToggle.addEventListener('click', () => {
       }
       requestAnimationFrame(anim);
 
-      h.addEventListener('click', ()=>{
-        h.remove();
-        // show a loving line
-        const lines=['i love you 💋','Yêu anh nhìu lắm, gửi đến anh nghìn nụ hôn ạ💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋','i mis you ~Chúc mình cùng nhau cố gắng hơn nhá anh iu.💋'];
-        const m = lines[Math.floor(Math.random()*lines.length)];
-        modal.style.display='flex'; modalImg.src='images/4.jpg'; document.getElementById('modalTitle').textContent='Lời em muốn nói💋'; modalCaption.textContent=m;
-      });
+h.addEventListener('click', ()=>{
+    h.remove();
+
+    // lời nhắn
+    const lines = [
+        'i love you 💋',
+        'Yêu anh nhìu lắm, gửi đến anh nghìn nụ hôn ạ💋💋💋💋💋💋💋',
+        'i miss you ~ Chúc mình cùng nhau cố gắng hơn nhá anh iu 💋'
+    ];
+
+    // danh sách ảnh
+    const images = [
+        'images/4.jpg',
+        'images/5.jpg',
+        'images/6.jpg',
+        'images/7.jpg'
+    ];
+
+    const m = lines[Math.floor(Math.random() * lines.length)];
+    const img = images[Math.floor(Math.random() * images.length)];
+
+    modal.style.display = 'flex';
+    modalImg.src = img;
+    document.getElementById('modalTitle').textContent = 'Lời em muốn nói💋';
+    modalCaption.textContent = m;
+});
     }
     setInterval(spawnHeart, 1600);
 
@@ -723,9 +950,13 @@ function startHeartAnimation() {
     particles.update(dt); particles.draw(ctx,image);
   }
 
-  function onResize(){canvas.width=canvas.clientWidth; canvas.height=canvas.clientHeight;}
-  window.onresize=onResize;
-  onResize(); render();
+function onResize(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', onResize);
+onResize();
+render();
 }
 
 let heartAnimationStarted = false;
@@ -734,27 +965,29 @@ function showHeartScreen() {
   document.getElementById('mainHero').style.display = 'none';
   document.getElementById('pinkboardScreen').style.display = 'block';
 
-  // Tắt nhạc màn kỷ niệm nếu đang phát
+  // Tắt nhạc màn kỷ niệm
   mainMusic.pause();
   mainMusic.currentTime = 0;
   musicToggle.textContent = 'Play';
 
-  // Tự động phát nhạc màn trái tim
+  // Bật nhạc trái tim
   heartMusic.currentTime = 0;
-  heartMusic.play().catch(() => {
-    console.log('Trình duyệt chặn tự phát nhạc. Hãy click lại nút Mở kỷ niệm.');
-  });
+  heartMusic.play().catch(()=>{});
 
-  if (!heartAnimationStarted) {
-    startHeartAnimation();
-    heartAnimationStarted = true;
-  }
+  // QUAN TRỌNG: ép layout render lại trước khi vẽ canvas
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize')); // <<< FIX CHÍNH
+
+    if (!heartAnimationStarted) {
+      startHeartAnimation();
+      heartAnimationStarted = true;
+    }
+  }, 50);
 
   if (typeof startBirthdayRain === 'function') {
     startBirthdayRain();
   }
 }
-
 // BUTTON EVENTS
 
 // document.getElementById('pinkboardbtn').onclick = function() {
@@ -789,7 +1022,7 @@ function startBirthdayRain() {
   const text = "HAPPYBIRTHDAY";
 
   // khoảng cách cột
-  const columnWidth = 18;
+  const columnWidth = 16;
 
   // số cột full màn hình
   const columns = Math.floor(window.innerWidth / columnWidth);
@@ -840,8 +1073,7 @@ function startBirthdayRain() {
 
       } else {
 
-        span.textContent =
-          text[(j + i) % text.length];
+span.textContent = text[j % text.length];
 
         // Ombre đồng đều từ trên xuống dưới
 const fade = 1 - (j / 55);
@@ -863,7 +1095,7 @@ span.style.textShadow = 'none';
       span.style.alignItems = 'center';
       span.style.justifyContent = 'center';
 
-      span.style.fontSize = '14px';
+      span.style.fontSize = '18px';
       span.style.fontWeight = '700';
       span.style.fontFamily = 'monospace';
 
@@ -880,12 +1112,12 @@ bottomText.innerHTML =
   'Chúc mừng sinh nhật anh iu - Trương Cường ♡';
 
 bottomText.style.position = 'absolute';
-bottomText.style.bottom = '100px';
+bottomText.style.bottom = '200px';
 bottomText.style.left = '50%';
 bottomText.style.transform = 'translateX(-50%)';
 
-bottomText.style.fontSize = '18px';
-bottomText.style.fontWeight = '700';
+bottomText.style.fontSize = '25px';
+bottomText.style.fontWeight = '1000';
 
 bottomText.style.fontFamily = 'cursive';
 
