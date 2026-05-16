@@ -8,12 +8,6 @@
 :root{--accent:#ff6b9f;--accent2:#ffdc8a;--bg:#0b0711} *{box-sizing:border-box} 
 html,body{height:100%;margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#fff;background:radial-gradient(circle at center,#1a0f2c 0%,#050309 100%)}
 
-/* INTRO SCREEN
-#introScreen{position:absolute;inset:0;background:radial-gradient(circle at center,#ff6b9f,#ffdc8a);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;color:#fff;text-align:center;padding:20px} 
-#introScreen h2{font-size:36px;margin:12px 0;color:#fff;text-shadow:0 0 8px #ff6b9f} 
-#introScreen input{margin-top:12px;padding:10px 14px;border-radius:10px;border:none;font-size:18px} 
-#introScreen button{margin-top:20px;padding:12px 24px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff6b9f,#ffdc8a);color:#111;font-weight:700;cursor:pointer;font-size:18px} */
-
 /* ===== INTRO NEW STYLE ===== */
 #introScreen{
   position:fixed;
@@ -159,9 +153,43 @@ h1{font-size:48px;margin:0 0 12px;letter-spacing:2px;color:var(--accent);text-sh
 .falling{pointer-events:none;position:absolute;inset:0;z-index:3;overflow:hidden} 
 .falling img{position:absolute;width:100px;height:100px;object-fit:cover;border-radius:14px;box-shadow:0 10px 28px rgba(255,107,159,0.5);opacity:0.95;filter:drop-shadow(0 0 6px #ffdc8a)} 
 
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.8));z-index:50} 
-.modal .modal-card{background:linear-gradient(135deg,#1a0f2c,#3d0d45);padding:20px;border-radius:16px;max-width:960px;width:90%;display:flex;gap:20px;box-shadow:0 8px 36px rgba(255,107,159,0.4)} 
-.modal img{width:340px;height:340px;object-fit:cover;border-radius:12px;box-shadow:0 8px 24px rgba(255,220,138,0.5)} 
+/* .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.8));z-index:50}  */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(0,0,0,0.2); /* mờ nhẹ thôi */
+  z-index:50;
+  padding:20px;
+}
+/* .modal .modal-card{background:linear-gradient(135deg,#1a0f2c,#3d0d45);padding:20px;border-radius:16px;max-width:960px;width:90%;display:flex;gap:20px;box-shadow:0 8px 36px rgba(255,107,159,0.4)}  */
+.modal .modal-card{
+  background:linear-gradient(135deg,#1a0f2c,#3d0d45);
+  padding:16px;
+  border-radius:16px;
+
+  width:90%;
+  max-width:320px;   /* 👈 QUAN TRỌNG: giới hạn nhỏ lại */
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+
+  box-shadow:0 8px 30px rgba(255,107,159,0.4);
+
+  animation: popupUp 0.3s ease;
+}
+/* .modal img{width:340px;height:340px;object-fit:cover;border-radius:12px;box-shadow:0 8px 24px rgba(255,220,138,0.5)}  */
+.modal img{
+  width:100%;
+  max-width:220px;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+}
 .modal .meta{flex:1;color:#fff} 
 
 .game{height:140px;border-radius:12px;padding:14px;background:linear-gradient(90deg,rgba(255,107,159,0.12),rgba(255,220,138,0.05));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden} 
@@ -295,11 +323,14 @@ canvas{position:absolute;width:100%;height:100%}
       <div class="sub">        💕 _19.05.1997 - 19.05.2026_ 💕</div>
       <div class="sub"> 💕Ngàn lời iu thương gửi đến anh ạ💕 </div>
       <div class="typing" id="typing"><div id="typingText"></div><div class="cursor"></div></div>
-      <div class="count" id="count">
+      <!-- <div class="count" id="count">
         <div class="box"><div class="num" id="daysCount">--</div><div class="lbl">Ngày yêu rùi đó ha 💕</div></div>
         <div class="box"><div class="num" id="hoursCount">--</div><div class="lbl">Giờ yêu nhau💕</div></div>
         <div class="box"><div class="num" id="secondsCount">--</div><div class="lbl">Giây yêu nhau 💕</div></div>
-      </div>
+      </div> -->
+    <div style="text-align:center;margin-bottom:12px;font-size:18px;color:#ffdc8a;text-shadow:0 0 10px #ff6b9f;">
+  💕Anh click vào mỗi tấm ảnh là 1 lời nhắn ạ 💕
+</div>
     <!-- Mấy cái hộp -->
       <div class="gallery" id="gallery">
         <img src="images/1.jpg" data-caption="I love you 3000, Gửi đến anh đầy ắp tình yêu thương của em ạ. Em nhớ bbi cụa em nhìu lắm, bbi cụa em có nhớ em khum zị, huuhuhhu ~~ Em bic iu xa bùn lắm, em cx bùn, cx tủi thân lắm vì chả đc ở bên ng iu nhìu, mấy ngày đặc biệt thì cx chả gặp đc nhau nên bé làm món quà nho nhỏ này tặng cho bbi cụa em nhá 💋. Đây cũng là lần đầu tiên em chú tâm học hỏi để làm ra đc web này đấy bbi ạ. SUY ra anh phải bic em yêu anh nhiều lắm đấy nhá💋 " alt="photo1">
@@ -325,7 +356,7 @@ canvas{position:absolute;width:100%;height:100%}
 
       </div>
       <div class="card game" id="game"><div>Anh chạm vào trái tim rơi để mở lời yêu th thương của bé nh, Mỗi trái tym là một lời yêu thương bé gửi đến anh ạ, nhớ đọc hết nhá!❤️</div></div>
-      <div class="card"><strong></strong><div class="sub"></div><input type="date" id="startDate" value="2025-06-21" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình bắt đầu là người yêu ạ ❤️</strong><div class="sub"></div><input type="date" id="endDate" value="2025-09-29" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình tròn 100 ngày iu nhau ha ❤️</div>
+      <!-- <div class="card"><strong></strong><div class="sub"></div><input type="date" id="startDate" value="2026-05-04" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình bắt đầu là người yêu ạ ❤️</strong><div class="sub"></div><input type="date" id="endDate" value="2025-09-29" disabled style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff"> Ngày mình tròn 100 ngày iu nhau ha ❤️</div> -->
     </div>
   </div>
   <footer>i love you 3000 ❤️</footer>
@@ -335,7 +366,7 @@ canvas{position:absolute;width:100%;height:100%}
   <div class="modal-card">
     <img src="" id="modalImg">
     <div class="meta">
-      <h3 id="modalTitle">Lời nhắn</h3>
+      <h3 id="modalTitle">Lời iu thương</h3>
       <p id="modalCaption"></p>
       <div style="margin-top:12px"><button class="btn" id="closeModal">Đóng</button></div>
     </div>
@@ -390,7 +421,7 @@ startBtn.addEventListener('click', () => {
 // --- INIT PAGE ---
 function initPage() {
   document.getElementById('mainHero').style.display = 'flex';
-  startTyping("Anh iu, chúc mừng 100 ngày của chúng ta 💕");
+  startTyping("Chúc mừng sinh nhật anh iu 💕");
   startCounting();
   initGallery();
   initFallingPics();
@@ -402,7 +433,7 @@ function initPage() {
 
  /* ========== SETTINGS ========== */
     // Mặc định ngày bắt đầu: (edit nếu cần)
-    const defaultStart = '2025-06-21'; // thay bằng ngày 2 bạn bắt đầu (YYYY-MM-DD)
+    const defaultStart = '2026-05-04'; // thay bằng ngày 2 bạn bắt đầu (YYYY-MM-DD)
     const day100Date = (dStr)=>{ const d=new Date(dStr); d.setDate(d.getDate()+99); return d; };
 
     /* ========== TYPING TEXT ========== */
@@ -433,37 +464,37 @@ function initPage() {
 
 // Đêm số ngày + số giờ 
 
-function startCounting() {
-  const startDate = new Date(document.getElementById('startDate').value + 'T00:00:00');
-  const daysCount = document.getElementById('daysCount');
-  const hoursCount = document.getElementById('hoursCount');
-  const secondsCount = document.getElementById('secondsCount');
+// function startCounting() {
+//   const startDate = new Date(document.getElementById('startDate').value + 'T00:00:00');
+//   const daysCount = document.getElementById('daysCount');
+//   const hoursCount = document.getElementById('hoursCount');
+//   const secondsCount = document.getElementById('secondsCount');
 
-  function updateCount() {
-    const now = new Date();
-    const diff = now - startDate;
+//   function updateCount() {
+//     const now = new Date();
+//     const diff = now - startDate;
 
-    // số ngày (không bao gồm ngày bắt đầu)
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+//     // số ngày (không bao gồm ngày bắt đầu)
+//     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    // số giờ tổng cộng
-    const hours = Math.floor(diff / (1000 * 60 * 60));
+//     // số giờ tổng cộng
+//     const hours = Math.floor(diff / (1000 * 60 * 60));
 
-    // Số giây
+//     // Số giây
 
-    const seconds = Math.floor(diff / 1000);
+//     const seconds = Math.floor(diff / 1000);
 
 
-    daysCount.textContent = days;
-    hoursCount.textContent = hours;
-    secondsCount.textContent = seconds;
-  }
+//     daysCount.textContent = days;
+//     hoursCount.textContent = hours;
+//     secondsCount.textContent = seconds;
+//   }
 
-  updateCount(); // cập nhật khi load
-  setInterval(updateCount, 1000); // cập nhật mỗi giây
-}
+//   updateCount(); // cập nhật khi load
+//   setInterval(updateCount, 1000); // cập nhật mỗi giây
+// }
 
-startCounting();
+// startCounting();
 
 // popup click vào từng ảnh -> hineej chi tiết
     /* ========== GALLERY MODAL ========== */
@@ -577,7 +608,7 @@ musicToggle.addEventListener('click', () => {
         // show a loving line
         const lines=['i love you 💋','Yêu anh nhìu lắm, gửi đến anh nghìn nụ hôn ạ💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋','i mis you ~Chúc mình cùng nhau cố gắng hơn nhá anh iu.💋'];
         const m = lines[Math.floor(Math.random()*lines.length)];
-        modal.style.display='flex'; modalImg.src='images/4.jpg'; document.getElementById('modalTitle').textContent='Lời iu thương ha💋'; modalCaption.textContent=m;
+        modal.style.display='flex'; modalImg.src='images/4.jpg'; document.getElementById('modalTitle').textContent='Lời em muốn nói💋'; modalCaption.textContent=m;
       });
     }
     setInterval(spawnHeart, 1600);
@@ -846,18 +877,17 @@ span.style.textShadow = 'none';
 const bottomText = document.createElement('div');
 
 bottomText.innerHTML =
-  'Chúc mừng sinh nhật, anh yêu - Trương Cường ♡';
+  'Chúc mừng sinh nhật anh iu - Trương Cường ♡';
 
 bottomText.style.position = 'absolute';
-bottomText.style.bottom = '35px';
+bottomText.style.bottom = '100px';
 bottomText.style.left = '50%';
 bottomText.style.transform = 'translateX(-50%)';
 
-bottomText.style.fontSize = '42px';
+bottomText.style.fontSize = '18px';
 bottomText.style.fontWeight = '700';
 
-bottomText.style.fontFamily =
-  '"Brush Script MT", cursive';
+bottomText.style.fontFamily = 'cursive';
 
 // hiệu ứng gradient đổi màu
 // bottomText.style.background =
